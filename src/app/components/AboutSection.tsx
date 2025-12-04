@@ -60,7 +60,7 @@ export default function AboutSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-lg md:text-xl text-[var(--color-text)]/90 max-w-3xl leading-relaxed mb-8"
         >
-          LeanSpark is a book about turning scarcity into strategy. It's about
+          LeanSpark is a playbook for turning scarcity into strategy. It's about
           the entrepreneurs who didn't wait for capital, perfect timing, or
           Silicon Valley.
         </motion.p>

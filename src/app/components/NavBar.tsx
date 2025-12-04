@@ -7,7 +7,7 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = ["Home", "About", "Authors", "Media"];
+  const navLinks = ["Home", "About", "Authors", "Launch"];
 
   return (
     <nav className="w-full fixed top-0 left-0 bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
@@ -32,7 +32,7 @@ export default function NavBar() {
           {navLinks.map((item, index) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`#${item === "Launch" ? "countdown" : item.toLowerCase()}`}
               className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-300 font-medium text-sm tracking-wide"
             >
               {item}
@@ -70,7 +70,7 @@ export default function NavBar() {
               {navLinks.map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={`#${item === "Launch" ? "countdown" : item.toLowerCase()}`}
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-300 font-medium py-2"
                 >
