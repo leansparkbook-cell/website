@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 interface TimeLeft {
   days: number;
@@ -24,7 +23,7 @@ export default function CountdownSection() {
     setMounted(true);
 
     const calculateTimeLeft = () => {
-      const targetDate = new Date("2026-01-01T00:00:00+05:30"); // Jan 1, 2026, IST
+      const targetDate = new Date("2026-01-17T00:00:00+05:30"); // Jan 17, 2026, IST
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
 
@@ -44,10 +43,8 @@ export default function CountdownSection() {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     };
 
-    // Set initial value
     setTimeLeft(calculateTimeLeft());
 
-    // Update every second
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -62,179 +59,95 @@ export default function CountdownSection() {
     { label: "Seconds", value: timeLeft.seconds },
   ];
 
-  if (!mounted) {
-    // Prevent hydration mismatch
-    return (
-      <section className="relative py-16 px-6 md:px-20 bg-[var(--color-paper)]">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="w-24 h-24 bg-gray-100 rounded-lg animate-pulse" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  if (!mounted) return null;
 
   return (
-    <section
-      id="countdown"
-      className="relative py-16 px-6 md:px-20 bg-[var(--color-paper)] overflow-hidden"
-    >
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent)]/5 to-transparent" />
+    <section className="py-32 px-6 bg-[var(--color-brand-bg)] relative">
+      {/* Section border top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--outline-muted)] to-transparent" />
 
-      <div className="relative max-w-4xl mx-auto text-center">
-        {/* Section Title */}
+      <div className="max-w-5xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-12 flex flex-col items-center"
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          viewport={{ once: true }}
+          className="mb-20"
         >
-          <h3 className="text-2xl md:text-3xl font-serif mb-6 text-[var(--color-text)]">
-            Launching at
-          </h3>
-
-          {/* JLT Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="mb-4"
-          >
-            <Image
-              src="/jlt logo.svg"
-              alt="Jaipur Literature Festival"
-              width={336}
-              height={120}
-              className="w-auto h-20 md:h-24 lg:h-28"
-              priority
-            />
-          </motion.div>
-
-          <div className="mt-2 space-y-1">
-            <p className="text-[var(--color-accent)] text-base md:text-lg font-bold uppercase tracking-wider">
-              1 January 2026
-            </p>
-            <p className="text-[var(--color-text)]/60 text-xs md:text-sm uppercase tracking-wide">
-              Hotel Clarks Amer, Jaipur
-            </p>
+          {/* Eyebrow with decorative line */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
+            <span className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+              The Countdown Begins
+            </span>
+            <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
           </div>
+
+          <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.06em] text-[var(--color-brand-primary)]">
+            January 17, 2026
+          </h2>
         </motion.div>
 
-        {/* Countdown Grid */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: [0.25, 0.4, 0.25, 1],
-          }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8"
-        >
+        {/* Countdown Grid with Diamond Separators */}
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-0">
           {timeUnits.map((unit, index) => (
-            <motion.div
-              key={unit.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.3 + index * 0.1,
-                ease: [0.25, 0.4, 0.25, 1],
-              }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex flex-col items-center"
-            >
-              {/* Time Box */}
-              <div className="relative group">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative w-24 h-24 md:w-32 md:h-32 bg-white rounded-lg shadow-md border border-[var(--color-accent)]/20 flex items-center justify-center group-hover:shadow-xl group-hover:border-[var(--color-accent)]/40 transition-all duration-300"
-                >
-                  {/* Animated number */}
-                  <motion.span
-                    key={unit.value}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="font-mono text-4xl md:text-5xl font-bold text-[var(--color-text)] tabular-nums"
-                    aria-live="polite"
-                    aria-label={`${unit.value} ${unit.label.toLowerCase()}`}
-                  >
-                    {String(unit.value).padStart(2, "0")}
-                  </motion.span>
-
-                  {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[var(--color-accent)]/30 rounded-tr-lg group-hover:border-[var(--color-accent)] transition-colors duration-300" />
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[var(--color-accent)]/30 rounded-bl-lg group-hover:border-[var(--color-accent)] transition-colors duration-300" />
-                </motion.div>
-
-                {/* Subtle pulse animation */}
-                <motion.div
-                  className="absolute inset-0 rounded-lg border-2 border-[var(--color-accent)]/0 group-hover:border-[var(--color-accent)]/20"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    opacity: [0, 0.5, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              </div>
-
-              {/* Label */}
-              <motion.span
-                className="mt-3 text-sm md:text-base font-medium uppercase tracking-wider text-[var(--color-text)]/70"
-                whileHover={{ color: "var(--color-accent)" }}
-                transition={{ duration: 0.2 }}
+            <div key={unit.label} className="flex items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                viewport={{ once: true }}
+                className="group"
               >
-                {unit.label}
-              </motion.span>
-            </motion.div>
-          ))}
-        </motion.div>
+                {/* Outline Circle Container */}
+                <div className="bg-transparent border-2 border-[var(--outline-muted)] rounded-full w-28 h-28 md:w-36 md:h-36 flex flex-col items-center justify-center group-hover:border-[var(--color-brand-primary)] group-hover:-translate-y-2 transition-all duration-500">
+                  {/* Serif Number for Editorial Feel */}
+                  <span className="block font-serif font-semibold text-4xl md:text-5xl text-[var(--color-brand-primary)] mb-1 tabular-nums tracking-tight">
+                    {String(unit.value).padStart(2, "0")}
+                  </span>
+                  <span className="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">
+                    {unit.label}
+                  </span>
+                </div>
+              </motion.div>
 
-        {/* Call to Action */}
+              {/* Diamond Separator (not after last item) */}
+              {index < timeUnits.length - 1 && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="hidden md:block mx-6"
+                >
+                  <div className="w-2 h-2 border border-[var(--color-brand-accent)] rotate-45 opacity-60" />
+                </motion.div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* JLF Official Launch Partner */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.6,
-            ease: [0.25, 0.4, 0.25, 1],
-          }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mt-12"
+          transition={{ delay: 0.6, duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mt-16 flex flex-col items-center gap-4"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 bg-[var(--color-accent)] text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-            aria-label="Mark your calendar for LeanSpark launch"
-          >
-            Mark Your Calendar
-            <motion.span
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="inline-block text-lg"
-            >
-              📅
-            </motion.span>
-          </motion.button>
+          <div className="w-3 h-3 border-2 border-[var(--color-brand-accent)] rotate-45 opacity-40" />
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <div className="w-36 md:w-40 h-auto opacity-85 hover:opacity-100 transition-opacity duration-300">
+              <img
+                src="/JLFLOGO.svg"
+                alt="Jaipur Literature Festival"
+                className="w-full h-auto"
+              />
+            </div>
+            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+              Official Launch Partner
+            </span>
+          </div>
         </motion.div>
       </div>
     </section>

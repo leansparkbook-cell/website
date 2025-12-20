@@ -5,6 +5,7 @@ import AboutSection from "./components/AboutSection";
 import AuthorsSection from "./components/AuthorsSection";
 import WhyNowSection from "./components/WhyNowSection";
 import ContestsSection from "./components/ContestsSection";
+import Footer from "./components/Footer";
 import CursorSpark from "./components/CursorSpark";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <AuthorsSection />
       <WhyNowSection />
       <ContestsSection />
+      <Footer />
     </main>
   );
 }

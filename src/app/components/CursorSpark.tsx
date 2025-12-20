@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 export default function CursorSpark() {
   const lastSparkTime = useRef(0);
-  const THROTTLE_MS = 20; // Reduced from 30ms to 20ms for more responsive trail
+  const THROTTLE_MS = 35; // Increased throttle for subtler effect
 
   useEffect(() => {
     const createSpark = (x: number, y: number) => {
@@ -14,8 +14,8 @@ export default function CursorSpark() {
 
       const spark = document.createElement("div");
 
-      // Slightly larger size variation for more visibility
-      const size = 5 + Math.random() * 4;
+      // Smaller size for subtle premium feel
+      const size = 3 + Math.random() * 2;
 
       spark.style.position = "fixed";
       spark.style.left = `${x}px`;
@@ -23,26 +23,29 @@ export default function CursorSpark() {
       spark.style.width = `${size}px`;
       spark.style.height = `${size}px`;
       spark.style.borderRadius = "50%";
-      spark.style.background = "var(--color-accent)";
+      // Outlined ring instead of filled circle - using gold color
+      spark.style.background = "transparent";
+      spark.style.border = "1px solid var(--color-brand-gold)";
       spark.style.pointerEvents = "none";
-      spark.style.opacity = "0.75"; // Increased from 0.6 to 0.75 for more visibility
+      spark.style.opacity = "0.35"; // More subtle opacity
       spark.style.zIndex = "9999";
       spark.style.transform = "translate(-50%, -50%)";
-      spark.style.transition = "opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)"; // Slightly longer fade
-      spark.style.boxShadow = "0 0 8px rgba(230, 110, 33, 0.4)"; // Subtle glow
+      spark.style.transition = "opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
+      // Subtle gold glow
+      spark.style.boxShadow = "0 0 4px rgba(196, 169, 98, 0.2)";
 
       document.body.appendChild(spark);
 
-      // Trigger animation
+      // Trigger animation - expands into outlined ring
       requestAnimationFrame(() => {
         spark.style.opacity = "0";
-        spark.style.transform = "translate(-50%, -50%) scale(2.5)";
+        spark.style.transform = "translate(-50%, -50%) scale(2)";
       });
 
       // Clean up
       setTimeout(() => {
         spark.remove();
-      }, 700); // Extended from 600ms to match animation duration
+      }, 500);
     };
 
     const handleMouseMove = (e: MouseEvent) => {

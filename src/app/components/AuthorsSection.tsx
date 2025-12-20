@@ -1,126 +1,121 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const authors = [
   {
     name: "Jaideep Prabhu",
-    title: "Professor of Marketing, Cambridge University",
+    title: "Professor of Marketing",
+    institution: "Cambridge University",
     img: "/images/jaideep.svg",
   },
   {
-    name: "Mukesh Sud",
-    title: "Professor of Entrepreneurship, IIM Ahmedabad",
-    img: "/images/mukesh.svg",
+    name: "Priyank Narayan",
+    title: "Director, Centre for Entrepreneurship",
+    institution: "Ashoka University",
+    img: "/images/priyank.svg",
   },
   {
-    name: "Priyank Narayan",
-    title: "Director, Centre for Entrepreneurship, Ashoka University",
-    img: "/images/priyank.svg",
+    name: "Mukesh Sud",
+    title: "Professor of Entrepreneurship",
+    institution: "IIM Ahmedabad",
+    img: "/images/mukesh.svg",
   },
 ];
 
 export default function AuthorsSection() {
   return (
-    <section
-      id="authors"
-      className="relative py-24 px-6 md:px-20 bg-[var(--color-paper)] border-t border-gray-100/50"
-    >
-      <div className="max-w-6xl mx-auto text-center">
-        {/* Section Title */}
-        <motion.h2
+    <section id="authors" className="relative py-32 px-6 lg:px-24 bg-[var(--color-brand-bg)]">
+      {/* Section border top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--outline-muted)] to-transparent" />
+
+      <div className="max-w-[1400px] mx-auto">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-4xl md:text-5xl font-serif mb-4 leading-tight"
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          viewport={{ once: true }}
+          className="text-center mb-24"
         >
-          Meet the <span className="text-[var(--color-accent)]">Authors</span>
-        </motion.h2>
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+              Meet The Authors
+            </span>
+            <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
+          </div>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.1,
-            duration: 0.6,
-            ease: [0.25, 0.4, 0.25, 1],
-          }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-lg text-[var(--color-text)]/70 mb-16 max-w-2xl mx-auto"
-        >
-          Leading voices in innovation, entrepreneurship, and frugal strategy
-        </motion.p>
+          <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.06em] text-[var(--color-brand-primary)] mb-8">
+            The Authors
+          </h2>
+        </motion.div>
 
-        {/* Authors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {authors.map((author, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.2 + idx * 0.15,
-                duration: 0.6,
-                ease: [0.25, 0.4, 0.25, 1],
-              }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex flex-col items-center text-center group"
+              transition={{ delay: idx * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group flex"
             >
-              {/* Circular Image Frame */}
-              <div className="relative w-48 h-48 mb-6">
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className="relative w-full h-full rounded-full overflow-hidden shadow-lg border-2 border-[var(--color-accent)]/20 group-hover:border-[var(--color-accent)]/40 group-hover:shadow-2xl transition-all duration-500"
-                >
-                  <Image
-                    src={author.img}
-                    alt={author.name}
-                    width={192}
-                    height={192}
-                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
-                    priority={idx === 0}
-                  />
+              {/* Card Container */}
+              <div className="relative bg-[var(--color-paper-cream)] rounded-2xl p-6 lg:p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 w-full flex flex-col">
 
-                  {/* Subtle overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--color-accent)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </motion.div>
+                {/* Aesthetic Photo Frame */}
+                <div className="relative mx-auto mb-6 w-fit flex-shrink-0">
+                  {/* Outer decorative border */}
+                  <div className="absolute -inset-3 border border-[var(--color-brand-accent)]/20 rounded-xl" />
 
-                {/* Decorative accent ring */}
-                <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-[var(--color-accent)]/0 group-hover:border-[var(--color-accent)]/30"
-                  initial={false}
-                  animate={{
-                    scale: [1, 1.08, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                  {/* Inner photo container */}
+                  <div className="relative">
+                    {/* Photo with elegant inset frame */}
+                    <div className="relative w-36 h-44 lg:w-40 lg:h-48 overflow-hidden rounded-lg ring-1 ring-[var(--color-brand-primary)]/10 ring-offset-4 ring-offset-[var(--color-paper-cream)]">
+                      <img
+                        src={author.img}
+                        alt={author.name}
+                        className="w-full h-full object-cover object-top"
+                      />
+                      {/* Subtle inner shadow for depth */}
+                      <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.05)]" />
+                    </div>
+
+                    {/* Gold accent corner */}
+                    <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 bg-[var(--color-brand-gold)] rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+
+                {/* Small diamond divider */}
+                <div className="flex justify-center mb-5">
+                  <div className="w-2 h-2 border border-[var(--color-brand-accent)] rotate-45 opacity-40" />
+                </div>
+
+                {/* Author Info */}
+                <div className="text-center flex-grow flex flex-col justify-between">
+                  <div>
+                    {/* Author Name */}
+                    <h3 className="text-xl lg:text-2xl font-semibold tracking-[-0.06em] text-[var(--color-brand-primary)] mb-3">
+                      {author.name}
+                    </h3>
+
+                    {/* Title */}
+                    <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[var(--color-text-secondary)] mb-1.5 whitespace-nowrap">
+                      {author.title}
+                    </p>
+                  </div>
+
+                  {/* Institution */}
+                  <p className="text-sm text-[var(--color-brand-accent)] font-medium font-serif italic">
+                    {author.institution}
+                  </p>
+                </div>
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-[var(--color-brand-accent)]/30 to-transparent rounded-full" />
               </div>
-
-              {/* Author Name */}
-              <motion.h3
-                className="font-serif text-2xl md:text-3xl text-[var(--color-text)] mb-3 leading-tight"
-                whileHover={{ color: "var(--color-accent)" }}
-                transition={{ duration: 0.3 }}
-              >
-                {author.name}
-              </motion.h3>
-
-              {/* Author Title/Bio */}
-              <p className="text-[var(--color-text)]/70 max-w-xs leading-relaxed text-sm md:text-base px-2">
-                {author.title}
-              </p>
             </motion.div>
           ))}
         </div>

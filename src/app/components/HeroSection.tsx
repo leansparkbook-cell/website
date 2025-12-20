@@ -1,180 +1,106 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FiArrowRight } from "react-icons/fi";
+import Book3D from "./Book3D";
+import { EncryptedText } from "@/components/ui/encrypted-text";
 
 export default function HeroSection() {
-  const leftContentVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 1,
-        ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
-      },
-    },
-  };
-
-  const rightContentVariants = {
-    hidden: { opacity: 0, x: 30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: 0.3,
-        duration: 1,
-        ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
-      },
-    },
-  };
-
   return (
-    <section className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 px-6 lg:px-20 pt-32 pb-20 max-w-7xl mx-auto relative">
+    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24 px-6 lg:px-24 pt-32 pb-24 max-w-[1400px] mx-auto">
+      {/* Subtle Grid Background */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.025]"
+        style={{
+          backgroundImage: 'linear-gradient(var(--color-brand-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand-primary) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }}
+      />
+
       {/* Left Side - Text Content */}
       <motion.div
-        variants={leftContentVariants}
-        initial="hidden"
-        animate="visible"
-        className="flex-1 max-w-xl text-left"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+        className="flex-1 max-w-2xl text-left"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight">
-          Where{" "}
-          <span className="text-[var(--color-accent)] relative inline-block">
-            Constraints
-            <motion.span
-              className="absolute -bottom-1 left-0 right-0 h-1 bg-[var(--color-accent)] origin-left"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-            />
-          </span>{" "}
-          Ignite Creativity
-        </h1>
-
-        <div className="space-y-3 mb-10">
-          <p className="text-base md:text-lg text-[var(--color-text)] font-semibold leading-relaxed">
-            By{" "}
-            <span className="text-[var(--color-accent)] font-semibold">
-              Jaideep Prabhu
-            </span>
-            ,{" "}
-            <span className="text-[var(--color-accent)] font-semibold">
-              Mukesh Sud
-            </span>{" "}
-            &{" "}
-            <span className="text-[var(--color-accent)] font-semibold">
-              Priyank Narayan
-            </span>
-          </p>
-          <p className="text-sm md:text-base text-[var(--color-text)] font-semibold">
-            Coming{" "}
-            <span className="text-[var(--color-accent)] italic">January 2026</span>
-            {" "}at{" "}
-            <a
-              href="https://jaipurliteraturefestival.org?utm_source=chatgpt.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--color-accent)] italic hover:underline transition-all duration-200"
-            >
-              Jaipur Literature Festival
-            </a>
-          </p>
+        {/* Eyebrow */}
+        <div className="flex items-center gap-4 mb-10">
+          <span className="w-12 h-[2px] bg-[var(--color-brand-accent)]" />
+          <span className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+            Coming January 2026
+          </span>
         </div>
 
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="group relative px-8 py-3 border-2 border-[var(--color-accent)] text-[var(--color-accent)] rounded-full font-medium text-base overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          aria-label="Join the LeanSpark movement"
-        >
-          <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
-            Join the Movement
-            <motion.span
-              className="inline-block"
-              animate={{ x: [0, 4, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              →
-            </motion.span>
+        {/* Headline - Geist for modern impact */}
+        <h1 className="text-[var(--color-brand-primary)] font-semibold text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-[-0.06em] mb-8">
+          <span className="block whitespace-nowrap">
+            <EncryptedText
+              text="Where Constraints"
+              encryptedClassName="text-neutral-400"
+              revealedClassName="text-[var(--color-brand-primary)]"
+              revealDelayMs={50}
+            />
           </span>
-          <span className="absolute inset-0 bg-[var(--color-accent)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-        </motion.button>
-      </motion.div>
+          <span className="block whitespace-nowrap">
+            <EncryptedText
+              text="Ignite Creativity"
+              encryptedClassName="text-neutral-400"
+              revealedClassName="text-[var(--color-brand-accent)]"
+              revealDelayMs={50}
+            />
+          </span>
+        </h1>
 
-      {/* Right Side - Book Placeholder */}
-      <motion.div
-        variants={rightContentVariants}
-        initial="hidden"
-        animate="visible"
-        className="flex-1 flex justify-center items-center"
-      >
-        <motion.div
-          className="relative w-72 h-[420px] rounded-lg overflow-hidden shadow-2xl border border-gray-200 bg-gradient-to-br from-[#fff9f4] via-[#f7f2ea] to-[#ede4d9]"
-          whileHover={{ scale: 1.02, rotate: 1 }}
-          transition={{ duration: 0.3 }}
+        {/* Author Byline */}
+        <p className="text-sm text-[var(--color-text-secondary)] my-12 max-w-lg leading-relaxed font-medium tracking-[0.1em] uppercase">
+          By Jaideep Prabhu, Priyank Narayan & Mukesh Sud
+        </p>
+
+        {/* CTA Button - Premium Interaction */}
+        <motion.a
+          href="https://www.amazon.in/LeanSpark-Frugal-Design-Global-Impact/dp/0143480618"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{
+            y: -4,
+            boxShadow: "0 20px 40px -12px rgba(26, 46, 64, 0.25)",
+          }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-full font-medium text-base tracking-wide overflow-hidden"
+          style={{ backgroundColor: 'transparent' }}
         >
-          {/* Placeholder content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-            <div className="w-16 h-16 mb-4 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center">
-              <motion.div
-                className="w-8 h-8 rounded-full bg-[var(--color-accent)]/30"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-            <p className="text-[var(--color-muted)] text-sm font-medium">
-              Book Cover
-            </p>
-            <p className="text-[var(--color-muted)] text-xs mt-1">
-              Coming Soon
-            </p>
-          </div>
+          {/* Background fill animation */}
+          <span className="absolute inset-0 border-2 border-[var(--color-brand-primary)] rounded-full" />
+          <span className="absolute inset-0 bg-[var(--color-brand-primary)] rounded-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]" />
 
-          {/* Decorative grid overlay */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="w-full h-full bg-[repeating-linear-gradient(0deg,transparent,transparent_20px,var(--color-accent)_20px,var(--color-accent)_21px),repeating-linear-gradient(90deg,transparent,transparent_20px,var(--color-accent)_20px,var(--color-accent)_21px)]" />
-          </div>
-        </motion.div>
+          {/* Text content */}
+          <span className="relative z-10 text-[var(--color-brand-primary)] group-hover:text-white transition-colors duration-300 delay-100">
+            Pre-Order Now
+          </span>
+
+          {/* Arrow with enhanced animation */}
+          <span className="relative z-10 flex items-center justify-center w-5 h-5 text-[var(--color-brand-primary)] group-hover:text-white transition-colors duration-300 delay-100">
+            <FiArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]" />
+          </span>
+        </motion.a>
       </motion.div>
 
-      {/* Decorative floating elements */}
+      {/* Right Side - Hero Visual & JLF Partner */}
       <motion.div
-        className="absolute top-32 left-10 w-2 h-2 rounded-full bg-[var(--color-accent)] hidden lg:block"
-        animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.3, 0.7, 0.3],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-32 right-16 w-3 h-3 rounded-full bg-[var(--color-accent)] hidden lg:block"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.6, 0.2],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+        className="flex-1 flex flex-col justify-center items-center"
+      >
+        {/* 3D Interactive Book */}
+        <Book3D
+          src="/hero-gem.svg"
+          alt="LeanSpark - Where Constraints Ignite Creativity"
+          className="w-[220px] md:w-[280px] lg:w-[340px]"
+        />
+      </motion.div>
     </section>
   );
 }

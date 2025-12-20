@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Spectral } from "next/font/google";
+import { Plus_Jakarta_Sans, Fraunces, Oswald } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const serif = Fraunces({
+  variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
 });
 
-const spectral = Spectral({
-  variable: "--font-spectral",
-  weight: ["400", "600", "700"],
+const display = Oswald({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  weight: ["500", "600", "700"],
 });
+
+// Geist for headlines - modern, clean typography
+const geist = GeistSans;
 
 export const metadata: Metadata = {
   title: "LeanSpark — Where Constraints Ignite Creativity",
@@ -37,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spectral.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${display.variable} ${geist.variable}`}>
       <body className="antialiased overflow-x-hidden">
         {children}
       </body>
