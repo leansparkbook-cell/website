@@ -81,7 +81,7 @@ export default function AboutSection() {
           <p className="mb-2">
             LeanSpark is a playbook for turning scarcity into strategy.
           </p>
-          <p>
+          <p className="whitespace-nowrap">
             It's about the entrepreneurs who didn't wait for capital, perfect timing, or Silicon Valley.
           </p>
         </motion.div>
