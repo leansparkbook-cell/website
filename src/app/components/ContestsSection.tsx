@@ -55,7 +55,7 @@ export default function ContestsSection() {
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+            <span className="text-[0.9rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
               Participate & Win
             </span>
             <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
