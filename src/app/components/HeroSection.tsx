@@ -24,19 +24,19 @@ export default function HeroSection() {
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         className="flex-1 max-w-2xl text-left"
       >
-        {/* Eyebrow */}
+        {/* Eyebrow - Prominent January 2026 */}
         <div className="flex items-center gap-4 mb-10">
-          <span className="w-12 h-[2px] bg-[var(--color-brand-accent)]" />
-          <span className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+          <span className="w-16 h-[2px] bg-[var(--color-brand-accent)]" />
+          <span className="text-sm md:text-base font-semibold tracking-[0.15em] uppercase text-[var(--color-brand-primary)]">
             Coming January 2026
           </span>
         </div>
 
-        {/* Headline - Geist for modern impact */}
+        {/* Headline - Geist for modern impact, single unified color */}
         <h1 className="text-[var(--color-brand-primary)] font-semibold text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-[-0.06em] mb-8">
           <span className="block whitespace-nowrap">
             <EncryptedText
-              text="Where Constraints"
+              text="When Constraints"
               encryptedClassName="text-neutral-400"
               revealedClassName="text-[var(--color-brand-primary)]"
               revealDelayMs={50}
@@ -46,7 +46,7 @@ export default function HeroSection() {
             <EncryptedText
               text="Ignite Creativity"
               encryptedClassName="text-neutral-400"
-              revealedClassName="text-[var(--color-brand-accent)]"
+              revealedClassName="text-[var(--color-brand-primary)]"
               revealDelayMs={50}
             />
           </span>
@@ -64,7 +64,7 @@ export default function HeroSection() {
           rel="noopener noreferrer"
           whileHover={{
             y: -4,
-            boxShadow: "0 20px 40px -12px rgba(26, 46, 64, 0.25)",
+            boxShadow: "0 20px 40px -12px rgba(38, 56, 141, 0.25)",
           }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}

@@ -8,9 +8,9 @@
      PREMIUM EDITORIAL PALETTE - Muted, Sophisticated, Library-Inspired
      ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Primary Colors */
-  --color-brand-primary: #1A2E40;    /* Muted Charcoal Navy - sophisticated depth */
-  --color-brand-accent: #8B3A3A;     /* Muted Burgundy - wine/library feel */
+  /* Primary Colors - LeanSpark Brand */
+  --color-brand-primary: #26388D;    /* LeanSpark Blue - deep royal blue */
+  --color-brand-accent: #BD2220;     /* LeanSpark Red - vibrant true red */
   --color-brand-bg: #FAFAFA;         /* Clean Apple-like white */
   --color-brand-text: #1D1D1F;       /* Apple's signature near-black */
   --color-brand-gold: #C4A962;       /* Refined Gold - for cursor spark & accents */
@@ -29,8 +29,8 @@
 
   /* Functional Colors */
   --color-accent: var(--color-brand-accent);
-  --color-border: rgba(26, 46, 64, 0.1);
-  --color-border-subtle: rgba(26, 46, 64, 0.06);
+  --color-border: rgba(38, 56, 141, 0.1);
+  --color-border-subtle: rgba(38, 56, 141, 0.06);
 
   /* ═══════════════════════════════════════════════════════════════════════════
      OUTLINE DESIGN SYSTEM - Prominent 2px strokes, geometric accents
@@ -43,9 +43,9 @@
 
   --outline-primary: var(--color-brand-primary);
   --outline-accent: var(--color-brand-accent);
-  --outline-muted: rgba(26, 46, 64, 0.2);
-  --outline-light: rgba(26, 46, 64, 0.12);
-  --outline-hover: rgba(26, 46, 64, 0.35);
+  --outline-muted: rgba(38, 56, 141, 0.2);
+  --outline-light: rgba(38, 56, 141, 0.12);
+  --outline-hover: rgba(38, 56, 141, 0.35);
 
   /* ═══════════════════════════════════════════════════════════════════════════
      PREMIUM SHADOW SYSTEM - Layered, subtle, editorial

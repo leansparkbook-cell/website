@@ -80,12 +80,12 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <Link href="/" className="inline-block mb-6">
-              <span className="text-2xl font-display font-semibold uppercase tracking-[0.02em]">
+              <span className="text-3xl font-display font-bold uppercase tracking-[-0.02em]">
                 LeanSpark
               </span>
             </Link>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
-              A playbook for turning scarcity into strategy. Where constraints ignite creativity.
+              A playbook for turning scarcity into strategy. When constraints ignite creativity.
             </p>
 
             {/* Diamond accent */}

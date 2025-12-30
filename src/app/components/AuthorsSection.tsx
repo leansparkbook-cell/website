@@ -40,11 +40,15 @@ export default function AuthorsSection() {
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
-            <span className="text-[0.9rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
               Meet The Authors
             </span>
             <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
           </div>
+
+          <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.06em] text-[var(--color-brand-primary)] mb-8">
+            The Authors
+          </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">

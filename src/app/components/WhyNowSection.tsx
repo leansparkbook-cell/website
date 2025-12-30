@@ -45,7 +45,7 @@ export default function WhyNowSection() {
             {/* Eyebrow */}
             <div className="flex items-center gap-4 mb-8">
               <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
-              <span className="text-[0.9rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
                 The Timing
               </span>
             </div>

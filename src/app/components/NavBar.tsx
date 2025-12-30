@@ -37,9 +37,9 @@ export default function NavBar() {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex items-center justify-between">
-          {/* Logo - Bold display font */}
+          {/* Logo - Bold display font, prominent size */}
           <Link href="/" className="group">
-            <span className="text-[1.75rem] font-display font-semibold uppercase tracking-[0.02em] text-[var(--color-brand-primary)] group-hover:text-[var(--color-brand-accent)] transition-colors duration-300">
+            <span className="text-[2.5rem] font-display font-bold uppercase tracking-[-0.02em] text-[var(--color-brand-primary)] group-hover:text-[var(--color-brand-accent)] transition-colors duration-300">
               LeanSpark
             </span>
           </Link>
@@ -62,7 +62,7 @@ export default function NavBar() {
               href="https://www.amazon.in/LeanSpark-Frugal-Design-Global-Impact/dp/0143480618"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-6 py-2.5 rounded-full text-sm font-medium overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(26,46,64,0.3)] transition-all duration-300"
+              className="group relative px-6 py-2.5 rounded-full text-sm font-medium overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(38,56,141,0.3)] transition-all duration-300"
             >
               <span className="absolute inset-0 border-2 border-[var(--color-brand-primary)] rounded-full" />
               <span className="absolute inset-0 bg-[var(--color-brand-primary)] rounded-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]" />

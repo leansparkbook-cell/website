@@ -23,7 +23,7 @@ export default function CountdownSection() {
     setMounted(true);
 
     const calculateTimeLeft = () => {
-      const targetDate = new Date("2026-01-17T00:00:00+05:30"); // Jan 17, 2026, IST
+      const targetDate = new Date("2026-01-15T00:00:00+05:30"); // Jan 15, 2026, IST
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
 
@@ -83,9 +83,23 @@ export default function CountdownSection() {
             <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.06em] text-[var(--color-brand-primary)]">
-            January 17, 2026
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-0.06em] text-[var(--color-brand-primary)]">
+            January 15, 2026
           </h2>
+
+          {/* JLF Official Launch Partner - Prominent Position */}
+          <div className="mt-10 flex flex-col items-center gap-3">
+            <div className="w-44 md:w-52 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300">
+              <img
+                src="/JLFLOGO.svg"
+                alt="Jaipur Literature Festival"
+                className="w-full h-auto"
+              />
+            </div>
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+              Official Launch Partner
+            </span>
+          </div>
         </motion.div>
 
         {/* Countdown Grid with Diamond Separators */}
@@ -127,28 +141,6 @@ export default function CountdownSection() {
           ))}
         </div>
 
-        {/* JLF Official Launch Partner */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16 flex flex-col items-center gap-4"
-        >
-          <div className="w-3 h-3 border-2 border-[var(--color-brand-accent)] rotate-45 opacity-40" />
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <div className="w-36 md:w-40 h-auto opacity-85 hover:opacity-100 transition-opacity duration-300">
-              <img
-                src="/JLFLOGO.svg"
-                alt="Jaipur Literature Festival"
-                className="w-full h-auto"
-              />
-            </div>
-            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
-              Official Launch Partner
-            </span>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
