@@ -1,199 +1,255 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { HiX } from "react-icons/hi";
-import { FiArrowRight } from "react-icons/fi";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
+import { FiArrowRight, FiX } from "react-icons/fi";
 
 export default function AboutSection() {
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // ESC key handler for accessibility
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && showModal) {
-        setShowModal(false);
-      }
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [showModal]);
+  // Magnetic button effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Body scroll lock when modal is open
-  useEffect(() => {
-    if (showModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [showModal]);
+  const springConfig = { damping: 25, stiffness: 400 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const deltaX = (e.clientX - centerX) * 0.15;
+    const deltaY = (e.clientY - centerY) * 0.15;
+
+    mouseX.set(deltaX);
+    mouseY.set(deltaY);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    setIsHovered(false);
+  };
 
   return (
     <section
       id="about"
-      className="relative py-32 px-6 md:px-20 bg-[var(--color-paper)]"
+      className="relative py-32 md:py-40 px-6 lg:px-12 bg-white overflow-hidden"
     >
-      {/* Section border top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--outline-muted)] to-transparent" />
+      <div className="relative max-w-[1280px] mx-auto">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-4 mb-10">
+            <motion.span
+              initial={{ width: 0 }}
+              whileInView={{ width: 32 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="h-[1px] bg-[var(--color-brand-accent)]"
+            />
+            <span className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
+              The Framework
+            </span>
+            <motion.span
+              initial={{ width: 0 }}
+              whileInView={{ width: 32 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="h-[1px] bg-[var(--color-brand-accent)]"
+            />
+          </div>
 
-      <div className="max-w-5xl mx-auto text-left">
-        {/* Eyebrow */}
+          {/* Main Question */}
+          <h2 className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold tracking-[-0.04em] text-[var(--color-brand-primary)] mb-6">
+            What is{" "}
+            <span className="relative inline-block">
+              LeanSpark
+              <motion.span
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[var(--color-brand-accent)]/40 origin-left rounded-full"
+              />
+            </span>
+            ?
+          </h2>
+        </motion.div>
+
+        {/* Definition Statement - Clean, no decorative elements */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto text-center mb-14"
+        >
+          <p className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-medium leading-[1.5] tracking-[-0.015em] text-[var(--color-text-secondary)]">
+            It is the intentional spark of innovation that emerges under constraints.
+          </p>
+        </motion.div>
+
+        {/* Magnetic Read More Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="flex items-center gap-4 mb-8"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="flex justify-center"
         >
-          <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
-            About The Book
-          </span>
+          <motion.button
+            ref={buttonRef}
+            onClick={() => setIsModalOpen(true)}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={handleMouseLeave}
+            style={{ x, y }}
+            className="group relative px-8 py-4 rounded-full font-semibold text-[0.9375rem] overflow-hidden"
+          >
+            {/* Background layers */}
+            <span className="absolute inset-0 bg-[var(--color-brand-primary)] rounded-full" />
+
+            {/* Shine effect on hover */}
+            <motion.span
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full"
+              initial={{ x: "-100%" }}
+              animate={{ x: isHovered ? "100%" : "-100%" }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+
+            {/* Glow effect */}
+            <motion.span
+              className="absolute inset-0 rounded-full"
+              animate={{
+                boxShadow: isHovered
+                  ? "0 0 40px rgba(38, 56, 141, 0.4), 0 0 80px rgba(38, 56, 141, 0.2)"
+                  : "0 0 0px rgba(38, 56, 141, 0)"
+              }}
+              transition={{ duration: 0.3 }}
+            />
+
+            {/* Button content */}
+            <span className="relative z-10 flex items-center gap-3 text-white">
+              <span>Read More</span>
+              <motion.span
+                animate={{
+                  x: isHovered ? 4 : 0,
+                  scale: isHovered ? 1.1 : 1
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <FiArrowRight className="w-4 h-4" />
+              </motion.span>
+            </span>
+          </motion.button>
         </motion.div>
-
-        {/* Section Title - Serif */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-4xl md:text-5xl font-medium tracking-[-0.06em] mb-10 leading-tight text-[var(--color-brand-primary)]"
-        >
-          What is{" "}
-          <span className="text-[var(--color-brand-accent)]">LeanSpark</span>?
-        </motion.h2>
-
-        {/* Teaser Paragraph */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.2,
-            duration: 0.6,
-            ease: [0.23, 1, 0.32, 1],
-          }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-3xl leading-relaxed mb-10"
-        >
-          <p className="mb-2">
-            LeanSpark is a playbook for turning scarcity into strategy.
-          </p>
-          <p>
-            It's about the entrepreneurs who didn't wait for capital, perfect timing, or Silicon Valley.
-          </p>
-        </motion.div>
-
-        {/* Read More Button - Outline Style */}
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.6,
-            ease: [0.23, 1, 0.32, 1],
-          }}
-          viewport={{ once: true, margin: "-100px" }}
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => setShowModal(true)}
-          className="group inline-flex items-center gap-3 border-2 border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] rounded-full px-8 py-4 font-medium transition-all duration-500 hover:bg-[var(--color-brand-primary)] hover:text-white"
-          aria-label="Read more about LeanSpark"
-        >
-          Read More
-          <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-        </motion.button>
       </div>
 
-      {/* Modal with Simple Fade + Scale Animation */}
+      {/* Modal */}
       <AnimatePresence>
-        {showModal && (
+        {isModalOpen && (
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-[var(--color-brand-primary)]/20 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              onClick={() => setShowModal(false)}
-              aria-hidden="true"
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsModalOpen(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
             />
 
-            {/* Modal Container */}
-            <div className="fixed inset-0 flex justify-center items-center z-50 px-4 py-8">
+            {/* Modal */}
+            <div className="fixed inset-0 flex items-center justify-center z-50 p-4 pointer-events-none">
               <motion.div
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="modal-title"
-                className="relative bg-white rounded-xl max-w-lg w-full p-10 md:p-14 border-2 border-[var(--outline-muted)]"
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{
+                  type: "spring",
+                  damping: 30,
+                  stiffness: 300
+                }}
                 onClick={(e) => e.stopPropagation()}
+                className="relative bg-white rounded-2xl w-full max-w-xl overflow-hidden pointer-events-auto shadow-2xl"
               >
-                {/* Corner Accents */}
-                <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-[var(--color-brand-accent)] opacity-50" />
-                <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-[var(--color-brand-accent)] opacity-50" />
+                {/* Top accent bar */}
+                <div className="h-1 bg-gradient-to-r from-[var(--color-brand-primary)] via-[var(--color-brand-accent)] to-[var(--color-brand-primary)]" />
 
-                {/* Close Button */}
+                {/* Close button */}
                 <button
-                  onClick={() => setShowModal(false)}
-                  className="absolute top-4 right-4 p-2 rounded-full border border-[var(--outline-muted)] hover:border-[var(--color-brand-primary)] transition-colors duration-300 text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]"
-                  aria-label="Close modal"
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-[var(--color-paper-warm)] transition-colors z-10"
                 >
-                  <HiX className="w-5 h-5" />
+                  <FiX className="w-5 h-5 text-[var(--color-text-secondary)]" />
                 </button>
 
-                {/* Modal Content */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15, duration: 0.4 }}
-                  className="text-center"
-                >
-                  {/* Diamond Accent */}
-                  <div className="flex justify-center mb-6">
-                    <div className="w-3 h-3 border-2 border-[var(--color-brand-accent)] rotate-45" />
-                  </div>
-
-                  <h3
-                    id="modal-title"
-                    className="text-3xl md:text-4xl font-medium tracking-[-0.06em] mb-6 text-[var(--color-brand-primary)] leading-tight"
+                {/* Content */}
+                <div className="p-8 md:p-10">
+                  {/* Header */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
                   >
-                    LeanSpark
-                  </h3>
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="w-8 h-[2px] bg-[var(--color-brand-accent)]" />
+                      <span className="text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)]">
+                        Definition
+                      </span>
+                    </div>
 
-                  <p className="text-base md:text-lg text-[var(--color-text-secondary)] leading-relaxed mb-10">
-                    LeanSpark is about rethinking innovation through constraint.
-                    Drawing on years of research on{" "}
-                    <span className="font-semibold text-[var(--color-brand-primary)]">
-                      jugaad
-                    </span>{" "}
-                    and{" "}
-                    <span className="font-semibold text-[var(--color-brand-primary)]">
-                      lean entrepreneurship
-                    </span>
-                    , it explores how India's entrepreneurs transform limitation
-                    into launchpads — building fast, frugal, and fearless. It's
-                    not a theory; it's a spark born from real journeys.
-                  </p>
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] mb-6">
+                      What is LeanSpark?
+                    </h3>
+                  </motion.div>
 
-                  <button
-                    onClick={() => setShowModal(false)}
-                    className="px-8 py-3 border-2 border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] rounded-full hover:bg-[var(--color-brand-primary)] hover:text-white transition-all duration-500 font-medium"
+                  {/* Body */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 }}
+                    className="space-y-5"
                   >
-                    Close
-                  </button>
-                </motion.div>
+                    <p className="text-lg font-medium text-[var(--color-brand-primary)] leading-relaxed">
+                      It is the intentional spark of innovation that emerges under constraints.
+                    </p>
+
+                    <div className="w-12 h-[1px] bg-[var(--color-border-strong)]" />
+
+                    <p className="text-[var(--color-text-secondary)] leading-[1.8]">
+                      It is a contemporary framework for innovation that is rooted in{" "}
+                      <span className="font-semibold text-[var(--color-brand-primary)]">frugality</span>,{" "}
+                      <span className="font-semibold text-[var(--color-brand-primary)]">adaptability</span> and{" "}
+                      <span className="font-semibold text-[var(--color-brand-primary)]">purposeful ingenuity</span>.
+                    </p>
+
+                    <p className="text-[var(--color-text-secondary)] leading-[1.8]">
+                      While it carries forward the spirit of{" "}
+                      <span className="italic font-medium text-[var(--color-brand-accent)]">jugaad</span>—the Indian ethos of improvisational problem-solving—LeanSpark moves beyond makeshift fixes to solutions that are lean, scalable and sustainable.
+                    </p>
+                  </motion.div>
+                </div>
               </motion.div>
             </div>
           </>
         )}
       </AnimatePresence>
+
+      {/* Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
     </section>
   );
 }

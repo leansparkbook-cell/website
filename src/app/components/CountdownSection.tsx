@@ -62,86 +62,80 @@ export default function CountdownSection() {
   if (!mounted) return null;
 
   return (
-    <section className="py-32 px-6 bg-[var(--color-brand-bg)] relative">
-      {/* Section border top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--outline-muted)] to-transparent" />
+    <section className="py-24 md:py-32 px-6 bg-[var(--color-paper-warm)] relative overflow-hidden">
+      {/* Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
-      <div className="max-w-5xl mx-auto text-center">
+      <div className="max-w-[1280px] mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="text-center mb-16"
         >
-          {/* Eyebrow with decorative line */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
-              The Countdown Begins
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
+            <span className="text-[0.75rem] font-semibold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)]">
+              Launching At JLF
             </span>
-            <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
+            <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
           </div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-0.06em] text-[var(--color-brand-primary)]">
+          {/* Date */}
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.035em] text-[var(--color-brand-primary)] mb-8">
             January 15, 2026
           </h2>
 
-          {/* JLF Official Launch Partner - Prominent Position */}
-          <div className="mt-10 flex flex-col items-center gap-3">
-            <div className="w-44 md:w-52 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300">
+          {/* JLF Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center gap-3"
+          >
+            <div className="w-40 md:w-48 opacity-90 hover:opacity-100 transition-opacity duration-300">
               <img
                 src="/JLFLOGO.svg"
                 alt="Jaipur Literature Festival"
                 className="w-full h-auto"
               />
             </div>
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
+            <span className="text-[0.6875rem] font-semibold tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
               Official Launch Partner
             </span>
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Countdown Grid with Diamond Separators */}
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-0">
+        {/* Countdown Grid */}
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
           {timeUnits.map((unit, index) => (
-            <div key={unit.label} className="flex items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                {/* Outline Circle Container */}
-                <div className="bg-transparent border-2 border-[var(--outline-muted)] rounded-full w-28 h-28 md:w-36 md:h-36 flex flex-col items-center justify-center group-hover:border-[var(--color-brand-primary)] group-hover:-translate-y-2 transition-all duration-500">
-                  {/* Serif Number for Editorial Feel */}
-                  <span className="block font-serif font-semibold text-4xl md:text-5xl text-[var(--color-brand-primary)] mb-1 tabular-nums tracking-tight">
-                    {String(unit.value).padStart(2, "0")}
-                  </span>
-                  <span className="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">
-                    {unit.label}
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Diamond Separator (not after last item) */}
-              {index < timeUnits.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="hidden md:block mx-6"
-                >
-                  <div className="w-2 h-2 border border-[var(--color-brand-accent)] rotate-45 opacity-60" />
-                </motion.div>
-              )}
-            </div>
+            <motion.div
+              key={unit.label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="w-24 h-24 md:w-32 md:h-32 flex flex-col items-center justify-center bg-white rounded-2xl border border-[var(--color-border)] shadow-[var(--shadow-sm)] group-hover:shadow-[var(--shadow-lg)] group-hover:border-[var(--color-brand-primary)]/20 group-hover:-translate-y-1 transition-all duration-300">
+                <span className="block font-bold text-3xl md:text-4xl text-[var(--color-brand-primary)] tabular-nums tracking-tight">
+                  {String(unit.value).padStart(2, "0")}
+                </span>
+                <span className="text-[0.625rem] md:text-[0.6875rem] font-semibold tracking-[0.12em] uppercase text-[var(--color-text-muted)] mt-1">
+                  {unit.label}
+                </span>
+              </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
+
+      {/* Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
     </section>
   );
 }

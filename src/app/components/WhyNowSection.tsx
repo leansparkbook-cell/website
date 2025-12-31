@@ -1,116 +1,153 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiTrendingUp, FiGlobe, FiZap } from "react-icons/fi";
 
-const whyNowCards = [
+const insightBoxes = [
   {
-    title: "Global Shift to Frugality",
-    description: "Economic uncertainties and resource constraints are making frugal innovation not just smart, but essential for business survival.",
-    icon: <FiTrendingUp className="w-6 h-6" />,
-    stat: "73%",
-    statLabel: "of startups prioritize efficiency",
+    number: "I",
+    content:
+      "The central question facing India is this: How can it raise the standard of living for over half a billion people, given such profound resource limitations?",
   },
   {
-    title: "India's Innovation Moment",
-    description: "India's startup ecosystem is proving that world-class innovation doesn't require Silicon Valley-sized budgets or resources.",
-    icon: <FiGlobe className="w-6 h-6" />,
-    stat: "$100B+",
-    statLabel: "ecosystem valuation",
+    number: "II",
+    content:
+      "Even as investment flows into the country, the sheer scale of capital needed for full development is staggering.",
   },
   {
-    title: "The Constraint Advantage",
-    description: "Companies born in constraints are outperforming their well-funded peers by building resilient, efficient business models from day one.",
-    icon: <FiZap className="w-6 h-6" />,
-    stat: "2.5x",
-    statLabel: "higher survival rate",
+    number: "III",
+    content:
+      "Rather than throwing money at a problem, the smart way forward is frugal.",
   },
 ];
 
 export default function WhyNowSection() {
   return (
-    <section id="why-now" className="relative py-32 px-6 lg:px-24 bg-white">
-      {/* Section border top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--outline-muted)] to-transparent" />
+    <section
+      id="why-now"
+      className="relative py-32 md:py-40 px-6 lg:px-12 bg-white overflow-hidden"
+    >
+      {/* Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
-          <motion.div
+      {/* Subtle background pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-primary) 1px, transparent 0)`,
+          backgroundSize: '48px 48px'
+        }}
+      />
+
+      {/* Decorative elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 border border-[var(--color-brand-primary)]/[0.06] rounded-full" />
+      <div className="absolute bottom-20 right-10 w-48 h-48 border border-[var(--color-brand-primary)]/[0.04] rounded-full" />
+      <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-[var(--color-brand-accent)] rounded-full opacity-40" />
+
+      <div className="relative z-10 max-w-[1280px] mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
+            <span className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
+              The Timing
+            </span>
+            <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
+          </div>
+
+          <h2
+            className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] mb-10 text-[var(--color-brand-primary)]"
+            style={{ fontFamily: "var(--font-spectral), Georgia, serif" }}
+          >
+            Why Now?
+          </h2>
+
+          {/* Lead paragraph */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-2xl"
+            className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-3xl mx-auto leading-relaxed"
           >
-            {/* Eyebrow */}
-            <div className="flex items-center gap-4 mb-8">
-              <span className="w-12 h-[1px] bg-[var(--color-brand-accent)]" />
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--color-text-secondary)]">
-                The Timing
-              </span>
-            </div>
+            In an age of climate crises, resource inequalities, digital
+            disruption and geopolitical conflict,{" "}
+            <span className="font-semibold text-[var(--color-brand-primary)]">LeanSpark</span> is a
+            universal language of{" "}
+            <span className="text-[#BD2220] font-semibold">
+              resilient ingenuity
+            </span>
+            .
+          </motion.p>
+        </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.06em] text-[var(--color-brand-primary)] mb-8">
-              Why Now?
-            </h2>
-            <p className="text-xl text-[var(--color-text-secondary)] leading-relaxed">
-              The world is discovering what Indian entrepreneurs have always known: <span className="font-semibold text-[var(--color-brand-accent)]">scarcity breeds genius.</span>
-            </p>
-          </motion.div>
-
-          {/* Diamond Accent */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            viewport={{ once: true }}
-            className="hidden md:block"
-          >
-            <div className="w-4 h-4 border-2 border-[var(--color-brand-accent)] rotate-45 opacity-40" />
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {whyNowCards.map((card, index) => (
+        {/* Insight Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {insightBoxes.map((box, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={box.number}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              transition={{
+                delay: 0.2 + index * 0.12,
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="relative bg-transparent border-2 border-[var(--outline-muted)] p-12 rounded-xl hover:border-[var(--color-brand-primary)] transition-all duration-500 group"
+              className="group"
             >
-              {/* Corner Accents on Hover */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-[var(--color-brand-accent)] opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-[var(--color-brand-accent)] opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+              <div className="relative h-full bg-[var(--color-paper-warm)] rounded-2xl p-8 lg:p-10 border border-[var(--color-border)] shadow-[var(--shadow-sm)] transition-all duration-500 group-hover:shadow-[var(--shadow-lg)] group-hover:-translate-y-1 group-hover:border-[#BD2220]/20">
+                {/* Roman numeral header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <span
+                    className="text-4xl lg:text-5xl font-bold text-[#BD2220]"
+                    style={{ fontFamily: "var(--font-spectral), Georgia, serif" }}
+                  >
+                    {box.number}
+                  </span>
+                  <div className="flex-1 h-[2px] bg-gradient-to-r from-[#BD2220]/30 to-transparent" />
+                </div>
 
-              {/* Icon Container - Outline Circle */}
-              <div className="w-14 h-14 rounded-full bg-transparent border-2 border-[var(--color-brand-primary)] flex items-center justify-center text-[var(--color-brand-primary)] mb-10 group-hover:bg-[var(--color-brand-primary)] group-hover:text-white transition-all duration-500">
-                {card.icon}
-              </div>
+                {/* Content */}
+                <p className="text-[var(--color-text-secondary)] leading-[1.8] text-[0.95rem]">
+                  {box.content}
+                </p>
 
-              <h3 className="text-xl font-semibold tracking-[-0.06em] text-[var(--color-brand-primary)] mb-6">
-                {card.title}
-              </h3>
-
-              <p className="text-[var(--color-text-secondary)] leading-relaxed mb-10 min-h-[80px]">
-                {card.description}
-              </p>
-
-              {/* Stat Divider - Fine Hairline */}
-              <div className="pt-8 border-t border-[var(--outline-light)]">
-                <span className="block text-3xl font-serif font-semibold tracking-tight text-[var(--color-brand-accent)] mb-2">
-                  {card.stat}
-                </span>
-                <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">
-                  {card.statLabel}
-                </span>
+                {/* Subtle corner accent */}
+                <div className="absolute bottom-0 right-0 w-16 h-16 overflow-hidden rounded-br-2xl">
+                  <div className="absolute bottom-2 right-2 w-3 h-3 rotate-45 bg-[#BD2220] opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <div className="inline-flex items-center gap-3">
+            <div className="w-2 h-2 rotate-45 bg-[#BD2220]" />
+            <span className="text-[0.75rem] font-semibold tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
+              Innovation Under Constraint
+            </span>
+            <div className="w-2 h-2 rotate-45 bg-[#BD2220]" />
+          </div>
+        </motion.div>
       </div>
+
+      {/* Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
     </section>
   );
 }
