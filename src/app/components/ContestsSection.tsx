@@ -56,7 +56,7 @@ export default function ContestsSection() {
           <div className="flex items-center justify-center gap-3 mb-6">
             <span className="w-8 h-[2px] bg-[var(--color-brand-accent)]" />
             <span className="text-[0.75rem] font-semibold tracking-[0.12em] uppercase text-[var(--color-text-tertiary)]">
-              Participate & Win
+              Participate and win
             </span>
             <span className="w-8 h-[2px] bg-[var(--color-brand-accent)]" />
           </div>

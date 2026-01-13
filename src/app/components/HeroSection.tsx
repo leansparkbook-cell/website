@@ -83,16 +83,6 @@ export default function HeroSection() {
           <span className="block">Ignite Creativity</span>
         </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-10 max-w-lg"
-        >
-          A groundbreaking book on frugal design and innovation. Discover how the world's most creative minds turn limitations into competitive advantages.
-        </motion.p>
-
         {/* Authors */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}

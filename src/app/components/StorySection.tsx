@@ -4,34 +4,34 @@ import { motion } from "framer-motion";
 
 export default function StorySection() {
   return (
-    <section className="relative py-32 md:py-40 px-6 lg:px-12 bg-white overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-20 right-20 w-[300px] h-[300px] bg-[var(--color-brand-accent)]/[0.02] rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-[var(--color-brand-primary)]/[0.02] rounded-full blur-3xl" />
-      </div>
+    <section className="relative py-24 md:py-32 px-6 lg:px-12 bg-[var(--color-paper-warm)] overflow-hidden">
+      {/* Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
-      <div className="relative max-w-[1100px] mx-auto">
+      <div className="relative max-w-[1280px] mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
           {/* Eyebrow */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="w-8 h-[2px] bg-[var(--color-brand-accent)]" />
-            <span className="text-[0.75rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
-              Our Journey
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
+            <span className="text-[0.75rem] font-semibold tracking-[0.12em] uppercase text-[var(--color-text-tertiary)]">
+              Authors
             </span>
-            <span className="w-8 h-[2px] bg-[var(--color-brand-accent)]" />
+            <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
           </div>
 
-          <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold tracking-[-0.04em] text-[var(--color-brand-primary)]">
-            The Story Behind the Scenes
+          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] mb-4">
+            Our Story
           </h2>
+          <p className="text-[1.125rem] text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+            The journey behind the book and the ideas that shaped it.
+          </p>
         </motion.div>
 
         {/* Opening statement */}
@@ -150,9 +150,6 @@ export default function StorySection() {
           </div>
         </motion.div>
       </div>
-
-      {/* Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
       {/* Bottom Border */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />

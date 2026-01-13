@@ -62,18 +62,27 @@ export default function CountdownSection() {
   if (!mounted) return null;
 
   return (
-    <section className="py-24 md:py-32 px-6 bg-[var(--color-paper-warm)] relative overflow-hidden">
-      {/* Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
+    <section className="py-16 md:py-20 px-6 bg-[var(--color-paper-warm)] relative overflow-hidden">
+      {/* Polka dot background */}
+      <div
+        className="absolute inset-0 opacity-[0.15] pointer-events-none z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle, var(--color-brand-primary) 1.5px, transparent 1.5px)`,
+          backgroundSize: '32px 32px'
+        }}
+      />
 
-      <div className="max-w-[1280px] mx-auto">
+      {/* Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent z-10" />
+
+      <div className="relative z-10 max-w-[1280px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -85,7 +94,7 @@ export default function CountdownSection() {
           </div>
 
           {/* Date */}
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.035em] text-[var(--color-brand-primary)] mb-8">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.035em] text-[var(--color-brand-primary)] mb-6">
             January 15, 2026
           </h2>
 
@@ -97,7 +106,7 @@ export default function CountdownSection() {
             viewport={{ once: true }}
             className="flex flex-col items-center gap-3"
           >
-            <div className="w-40 md:w-48 opacity-90 hover:opacity-100 transition-opacity duration-300">
+            <div className="w-36 md:w-44 opacity-90 hover:opacity-100 transition-opacity duration-300">
               <img
                 src="/JLFLOGO.svg"
                 alt="Jaipur Literature Festival"
@@ -135,7 +144,7 @@ export default function CountdownSection() {
       </div>
 
       {/* Bottom Border */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent z-10" />
     </section>
   );
 }

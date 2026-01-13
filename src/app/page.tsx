@@ -5,7 +5,6 @@ import AboutSection from "./components/AboutSection";
 import AttributesSection from "./components/AttributesSection";
 import CanvasSection from "./components/CanvasSection";
 import WhyNowSection from "./components/WhyNowSection";
-import StorySection from "./components/StorySection";
 import EndorsementsSection from "./components/EndorsementsSection";
 import AuthorsSection from "./components/AuthorsSection";
 import ContestsSection from "./components/ContestsSection";
@@ -23,7 +22,6 @@ export default function Home() {
       <AttributesSection />
       <CanvasSection />
       <WhyNowSection />
-      <StorySection />
       <EndorsementsSection />
       <AuthorsSection />
       <ContestsSection />

@@ -41,6 +41,259 @@ export default function AboutSection() {
       id="about"
       className="relative py-32 md:py-40 px-6 lg:px-12 bg-white overflow-hidden"
     >
+      {/* Electric Sparky Background - Hand-drawn style */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Lightning bolt 1 - top left */}
+        <motion.svg
+          initial={{ opacity: 0, pathLength: 0 }}
+          whileInView={{ opacity: 1, pathLength: 1 }}
+          transition={{ duration: 1.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="absolute top-[12%] left-[12%] w-16 h-24 md:w-20 md:h-32"
+          viewBox="0 0 40 60"
+          fill="none"
+        >
+          <motion.path
+            d="M20 2 L8 28 L18 28 L12 58 L32 24 L20 24 L28 2 Z"
+            stroke="#C4A962"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            opacity="0.17"
+            style={{ strokeDasharray: 200, strokeDashoffset: 0 }}
+          />
+        </motion.svg>
+
+        {/* Lightning bolt 2 - top right */}
+        <motion.svg
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="absolute top-[15%] right-[15%] w-12 h-20 md:w-16 md:h-28 rotate-12"
+          viewBox="0 0 40 60"
+          fill="none"
+        >
+          <path
+            d="M22 4 L10 26 L18 27 L14 56 L30 22 L21 22 L26 4 Z"
+            stroke="#26388D"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            opacity="0.115"
+          />
+        </motion.svg>
+
+        {/* Spark lines - sketchy style */}
+        <motion.svg
+          animate={{ opacity: [0.1, 0.17, 0.1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[28%] left-[18%] w-32 h-8"
+          viewBox="0 0 100 20"
+        >
+          <path
+            d="M0 10 Q10 5, 20 10 T40 10 T60 10 T80 10 T100 10"
+            stroke="#BD2220"
+            strokeWidth="1.5"
+            fill="none"
+            opacity="0.14"
+            strokeLinecap="round"
+          />
+        </motion.svg>
+
+        {/* Electric dots/nodes */}
+        <motion.div
+          animate={{ scale: [1, 1.3, 1], opacity: [0.17, 0.29, 0.17] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[18%] left-[25%] w-2 h-2 rounded-full bg-[#C4A962]"
+        />
+        {/* Sketchy energy spark - right middle */}
+        <motion.svg
+          animate={{
+            scale: [1, 1.08, 1],
+            rotate: [0, 8, 0],
+            opacity: [0.14, 0.24, 0.14]
+          }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute top-[38%] right-[18%] w-12 h-12 md:w-16 md:h-16"
+          viewBox="0 0 40 40"
+        >
+          {/* Central spark with radiating hand-drawn lines */}
+          <g stroke="#C4A962" strokeWidth="1.5" strokeLinecap="round" fill="none">
+            {/* Core spark lines */}
+            <path d="M20 8 L20 14" opacity="0.9" />
+            <path d="M20 26 L20 32" opacity="0.9" />
+            <path d="M8 20 L14 20" opacity="0.9" />
+            <path d="M26 20 L32 20" opacity="0.9" />
+            {/* Diagonal sparks - sketchy style */}
+            <path d="M11 11 L15 15" opacity="0.7" />
+            <path d="M25 25 L29 29" opacity="0.7" />
+            <path d="M29 11 L25 15" opacity="0.7" />
+            <path d="M15 25 L11 29" opacity="0.7" />
+            {/* Inner mini sparks */}
+            <path d="M17 17 L19 19" opacity="0.5" strokeWidth="1" />
+            <path d="M21 21 L23 23" opacity="0.5" strokeWidth="1" />
+            <path d="M21 17 L23 15" opacity="0.5" strokeWidth="1" />
+            <path d="M17 23 L15 25" opacity="0.5" strokeWidth="1" />
+          </g>
+          {/* Center dot */}
+          <circle cx="20" cy="20" r="2" fill="#C4A962" opacity="0.3" />
+        </motion.svg>
+
+        {/* Sketchy energy spark - left middle */}
+        <motion.svg
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, -10, 0],
+            opacity: [0.12, 0.22, 0.12]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+          className="absolute top-[40%] left-[16%] w-12 h-12 md:w-16 md:h-16"
+          viewBox="0 0 40 40"
+        >
+          {/* Central spark with radiating hand-drawn lines */}
+          <g stroke="#26388D" strokeWidth="1.5" strokeLinecap="round" fill="none">
+            {/* Core spark lines */}
+            <path d="M20 8 L20 14" opacity="0.9" />
+            <path d="M20 26 L20 32" opacity="0.9" />
+            <path d="M8 20 L14 20" opacity="0.9" />
+            <path d="M26 20 L32 20" opacity="0.9" />
+            {/* Diagonal sparks - sketchy style */}
+            <path d="M11 11 L15 15" opacity="0.7" />
+            <path d="M25 25 L29 29" opacity="0.7" />
+            <path d="M29 11 L25 15" opacity="0.7" />
+            <path d="M15 25 L11 29" opacity="0.7" />
+            {/* Inner mini sparks */}
+            <path d="M17 17 L19 19" opacity="0.5" strokeWidth="1" />
+            <path d="M21 21 L23 23" opacity="0.5" strokeWidth="1" />
+            <path d="M21 17 L23 15" opacity="0.5" strokeWidth="1" />
+            <path d="M17 23 L15 25" opacity="0.5" strokeWidth="1" />
+          </g>
+          {/* Center dot */}
+          <circle cx="20" cy="20" r="2" fill="#26388D" opacity="0.25" />
+        </motion.svg>
+
+        <motion.div
+          animate={{ scale: [1, 1.4, 1], opacity: [0.14, 0.25, 0.14] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[38%] left-[15%] w-2.5 h-2.5 rounded-full bg-[#BD2220]"
+        />
+
+        {/* Zigzag spark line - bottom */}
+        <motion.svg
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="absolute bottom-[25%] right-[15%] w-40 h-12 md:w-56 md:h-16"
+          viewBox="0 0 150 30"
+        >
+          <path
+            d="M0 15 L15 8 L30 22 L45 6 L60 18 L75 10 L90 20 L105 8 L120 16 L135 12 L150 15"
+            stroke="#C4A962"
+            strokeWidth="1.5"
+            fill="none"
+            opacity="0.14"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </motion.svg>
+
+        {/* Hand-drawn circle sparks */}
+        <motion.svg
+          animate={{ rotate: [360, 0] }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[28%] right-[12%] w-20 h-20 md:w-28 md:h-28"
+          viewBox="0 0 50 50"
+        >
+          <circle
+            cx="25"
+            cy="25"
+            r="18"
+            stroke="#BD2220"
+            strokeWidth="1"
+            fill="none"
+            opacity="0.07"
+            strokeDasharray="3 8"
+          />
+        </motion.svg>
+
+        {/* Sketchy lightning accent - left side */}
+        <motion.svg
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="absolute top-[50%] left-[10%] w-10 h-16 md:w-14 md:h-24"
+          viewBox="0 0 30 50"
+        >
+          <path
+            d="M15 0 L5 20 L12 20 L8 50"
+            stroke="#C4A962"
+            strokeWidth="2"
+            fill="none"
+            opacity="0.17"
+            strokeLinecap="round"
+          />
+        </motion.svg>
+
+        {/* Spark burst - top center */}
+        <motion.svg
+          animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.21, 0.12] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[10%] left-1/2 -translate-x-1/2 w-24 h-24 md:w-32 md:h-32"
+          viewBox="0 0 60 60"
+        >
+          <g stroke="#26388D" strokeWidth="1" fill="none" opacity="0.12">
+            <line x1="30" y1="10" x2="30" y2="20" />
+            <line x1="30" y1="40" x2="30" y2="50" />
+            <line x1="10" y1="30" x2="20" y2="30" />
+            <line x1="40" y1="30" x2="50" y2="30" />
+            <line x1="16" y1="16" x2="22" y2="22" />
+            <line x1="38" y1="38" x2="44" y2="44" />
+            <line x1="44" y1="16" x2="38" y2="22" />
+            <line x1="22" y1="38" x2="16" y2="44" />
+          </g>
+        </motion.svg>
+
+        {/* Wavy electric line - bottom left */}
+        <motion.svg
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1.2, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="absolute bottom-[18%] left-[12%] w-36 h-8 origin-left"
+          viewBox="0 0 120 20"
+        >
+          <path
+            d="M0 10 C20 0, 30 20, 50 10 S80 0, 100 10 S110 15, 120 10"
+            stroke="#BD2220"
+            strokeWidth="1.2"
+            fill="none"
+            opacity="0.12"
+            strokeLinecap="round"
+          />
+        </motion.svg>
+
+        {/* Small spark crosses */}
+        <motion.div
+          animate={{ rotate: [0, 90, 0], opacity: [0.12, 0.23, 0.12] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[65%] right-[25%] text-[#C4A962] text-2xl font-light opacity-17"
+        >
+          +
+        </motion.div>
+        <motion.div
+          animate={{ rotate: [0, -90, 0], opacity: [0.1, 0.18, 0.1] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-[22%] left-[38%] text-[#26388D] text-xl font-light opacity-14"
+        >
+          +
+        </motion.div>
+      </div>
+
       <div className="relative max-w-[1280px] mx-auto">
         {/* Section Header */}
         <motion.div
@@ -60,7 +313,7 @@ export default function AboutSection() {
               className="h-[1px] bg-[var(--color-brand-accent)]"
             />
             <span className="text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-[var(--color-text-tertiary)]">
-              The Framework
+              The Concept
             </span>
             <motion.span
               initial={{ width: 0 }}
@@ -72,10 +325,10 @@ export default function AboutSection() {
           </div>
 
           {/* Main Question */}
-          <h2 className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold tracking-[-0.04em] text-[var(--color-brand-primary)] mb-6">
+          <h2 className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] mb-6">
             What is{" "}
             <span className="relative inline-block">
-              LeanSpark
+              LEANSPARK
               <motion.span
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -212,7 +465,7 @@ export default function AboutSection() {
                     </div>
 
                     <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] mb-6">
-                      What is LeanSpark?
+                      What is LEANSPARK?
                     </h3>
                   </motion.div>
 
