@@ -53,7 +53,8 @@ export default function NewsPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] mb-4"
+            className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.03em] text-[#BD2220] mb-4 italic"
+            style={{ fontFamily: "var(--font-spectral), Georgia, serif" }}
           >
             Work in Progress
           </motion.h1>

@@ -174,12 +174,6 @@ export default function ContestsSection() {
               </a>
             </span>
           </div>
-
-          <p className="text-[0.9375rem] text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed mt-8">
-            All entries will be featured in the LeanSpark community showcase.
-            <br />
-            Winners will receive mentorship from the authors and a chance to present at JLF 2026.
-          </p>
         </motion.div>
       </div>
 

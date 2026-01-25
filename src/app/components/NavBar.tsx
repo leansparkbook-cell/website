@@ -19,6 +19,7 @@ const authorsDropdown = [
 const mediaDropdown = [
   { name: "News", href: "/media/news" },
   { name: "Videos", href: "/media/videos" },
+  { name: "Gallery", href: "/media/gallery" },
 ];
 
 export default function NavBar() {
@@ -223,7 +224,7 @@ export default function NavBar() {
               <span className="absolute inset-0 bg-[#BD2220] rounded-full" />
               <span className="absolute inset-0 bg-[#a01d1b] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center gap-2 text-white">
-                Pre-Order
+                Order
                 <FiArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </span>
             </motion.a>
@@ -390,7 +391,7 @@ export default function NavBar() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 mt-8 py-4 px-8 bg-[#BD2220] text-white text-lg font-semibold rounded-full hover:bg-[#a01d1b] transition-colors duration-300"
                 >
-                  Pre-Order Now
+                  Order Now
                   <FiArrowUpRight className="w-5 h-5" />
                 </motion.a>
               </div>

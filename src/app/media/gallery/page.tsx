@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import CursorSpark from "../../components/CursorSpark";
-import { FiPlay, FiExternalLink } from "react-icons/fi";
+import Image from "next/image";
+import { useState } from "react";
+import { FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 // Organic scattered dots - hand-placed for natural feel
 const scatteredDots = [
@@ -38,46 +40,100 @@ const scatteredDots = [
   { x: 82, y: 55, size: 4, opacity: 0.07 },
 ];
 
-const videos = [
+interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  category: string;
+}
+
+const galleryImages: GalleryImage[] = [
   {
-    id: "RSaIOCHbuYw",
-    title: "The Lean Startup Summary",
-    url: "https://youtu.be/RSaIOCHbuYw",
-    type: "video",
+    src: "/gallery/gallery-1.png",
+    alt: "Baithak Event",
+    caption: "LeanSpark First Edition book launch at Baithak",
+    category: "Events",
   },
   {
-    id: "FhMeREHoDxQ",
-    title: "How Does a Lean Startup Work",
-    url: "https://youtu.be/FhMeREHoDxQ",
-    type: "video",
+    src: "/gallery/gallery-2.jpeg",
+    alt: "Authors with Guests",
+    caption: "Meeting at the bookshelf with LeanSpark on display",
+    category: "Authors",
   },
   {
-    id: "s2HCrhNVfak",
-    title: "Lean Six Sigma",
-    url: "https://youtu.be/s2HCrhNVfak",
-    type: "video",
+    src: "/gallery/gallery-3.jpeg",
+    alt: "At Penguin Random House",
+    caption: "Authors at Penguin Random House India office",
+    category: "Publisher",
   },
   {
-    id: "GB4ngAQTsf8",
-    title: "What is Jugaad Innovation?",
-    url: "https://youtube.com/shorts/GB4ngAQTsf8",
-    type: "short",
+    src: "/gallery/gallery-4.jpeg",
+    alt: "In Conversation",
+    caption: "Interview session discussing LeanSpark",
+    category: "Interviews",
   },
   {
-    id: "65RaXaU3WTc",
-    title: "What is an Example of Jugaad Innovation?",
-    url: "https://youtube.com/shorts/65RaXaU3WTc",
-    type: "short",
+    src: "/gallery/gallery-5.jpeg",
+    alt: "The Three Authors",
+    caption: "Jaideep Prabhu, Priyank Narayan & Mukesh Sud",
+    category: "Authors",
   },
   {
-    id: "xUyP3NanALY",
-    title: "India's Jugaad Innovation Secret",
-    url: "https://youtube.com/shorts/xUyP3NanALY",
-    type: "short",
+    src: "/gallery/gallery-6.jpeg",
+    alt: "With LeanSpark",
+    caption: "Fun moment with the book on display",
+    category: "Behind the Scenes",
+  },
+  {
+    src: "/gallery/gallery-7.jpeg",
+    alt: "Team Photo",
+    caption: "With the Penguin Random House team",
+    category: "Publisher",
+  },
+  {
+    src: "/gallery/gallery-8.jpeg",
+    alt: "Authors at PRH",
+    caption: "Candid moment at Penguin Random House",
+    category: "Behind the Scenes",
+  },
+  {
+    src: "/gallery/gallery-9.jpeg",
+    alt: "Meeting at Publisher",
+    caption: "Authors with guest at Penguin Random House",
+    category: "Publisher",
+  },
+  {
+    src: "/gallery/gallery-10.jpeg",
+    alt: "Evening Gathering",
+    caption: "Dinner event celebration",
+    category: "Events",
   },
 ];
 
-export default function VideosPage() {
+export default function GalleryPage() {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [filter, setFilter] = useState<string>("All");
+
+  const categories = ["All", ...Array.from(new Set(galleryImages.map((img) => img.category)))];
+  const filteredImages = filter === "All"
+    ? galleryImages
+    : galleryImages.filter((img) => img.category === filter);
+
+  const openLightbox = (index: number) => setSelectedImage(index);
+  const closeLightbox = () => setSelectedImage(null);
+
+  const goToPrevious = () => {
+    if (selectedImage !== null) {
+      setSelectedImage(selectedImage === 0 ? filteredImages.length - 1 : selectedImage - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (selectedImage !== null) {
+      setSelectedImage(selectedImage === filteredImages.length - 1 ? 0 : selectedImage + 1);
+    }
+  };
+
   return (
     <main className="relative">
       <NavBar />
@@ -85,7 +141,7 @@ export default function VideosPage() {
       {/* Spacer for fixed navbar */}
       <div className="h-24" />
 
-      <section className="relative py-24 md:py-32 px-6 lg:px-12 bg-[var(--color-paper-warm)] overflow-hidden">
+      <section className="relative py-24 md:py-32 px-6 lg:px-12 bg-[var(--color-paper-warm)] overflow-hidden min-h-screen">
         {/* Organic Scattered Dots Background */}
         <div className="absolute inset-0 pointer-events-none">
           {scatteredDots.map((dot, i) => (
@@ -160,11 +216,8 @@ export default function VideosPage() {
 
         {/* Elegant Double Border Frame */}
         <div className="absolute inset-6 md:inset-10 lg:inset-16 pointer-events-none">
-          {/* Outer border */}
           <div className="absolute inset-0 border border-[var(--color-brand-primary)]/[0.06] rounded-3xl" />
-          {/* Inner border with offset */}
           <div className="absolute inset-3 border border-[var(--color-brand-primary)]/[0.04] rounded-2xl" />
-          {/* Corner accents */}
           <div className="absolute -top-px -left-px w-12 h-12 border-t-2 border-l-2 border-[var(--color-brand-primary)]/20 rounded-tl-3xl" />
           <div className="absolute -top-px -right-px w-12 h-12 border-t-2 border-r-2 border-[var(--color-brand-primary)]/20 rounded-tr-3xl" />
           <div className="absolute -bottom-px -left-px w-12 h-12 border-b-2 border-l-2 border-[var(--color-brand-primary)]/20 rounded-bl-3xl" />
@@ -180,7 +233,7 @@ export default function VideosPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <div className="flex items-center justify-center gap-4 mb-6">
               <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
@@ -194,21 +247,40 @@ export default function VideosPage() {
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.03em] text-[#BD2220] mb-4 italic"
               style={{ fontFamily: "var(--font-spectral), Georgia, serif" }}
             >
-              Featured Videos
+              Photo Gallery
             </h1>
             <p className="text-[1.125rem] text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-              Explore our curated collection of videos on lean methodology, frugal innovation, and jugaad thinking.
+              Moments captured from events, workshops, and behind-the-scenes of the LeanSpark journey.
             </p>
           </motion.div>
 
-          {/* Videos Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {videos.map((video, idx) => (
-              <motion.a
-                key={video.id}
-                href={video.url}
-                target="_blank"
-                rel="noopener noreferrer"
+          {/* Category Filter */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className={`px-5 py-2 rounded-full text-[0.875rem] font-medium transition-all duration-300 ${
+                  filter === category
+                    ? "bg-[var(--color-brand-primary)] text-white shadow-lg"
+                    : "bg-white text-[var(--color-text-secondary)] hover:bg-[var(--color-brand-primary)]/5 border border-[var(--color-border)]"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredImages.map((image, idx) => (
+              <motion.div
+                key={image.src}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -216,54 +288,107 @@ export default function VideosPage() {
                   duration: 0.6,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group block"
+                onClick={() => openLightbox(idx)}
+                className="group cursor-pointer"
               >
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-lg)] transition-all duration-300 group-hover:-translate-y-2">
-                  {/* Thumbnail Container */}
-                  <div className="relative aspect-video overflow-hidden bg-[var(--color-brand-primary)]/5">
-                    {/* YouTube Thumbnail */}
-                    <img
-                      src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
-                      alt={video.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                <div className="relative aspect-[4/3] bg-white rounded-2xl overflow-hidden shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-lg)] transition-all duration-300 group-hover:-translate-y-2">
+                  {/* Image */}
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-[var(--color-brand-primary)]/0 group-hover:bg-[var(--color-brand-primary)]/20 transition-colors duration-300" />
-
-                    {/* Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-white/95 shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                        <FiPlay className="w-7 h-7 text-[var(--color-brand-primary)] ml-1" />
-                      </div>
-                    </div>
-
-                    {/* Type Badge */}
-                    {video.type === "short" && (
-                      <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[var(--color-brand-accent)] text-white text-[0.6875rem] font-semibold tracking-wide uppercase">
-                        Short
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-[1rem] font-semibold text-[var(--color-brand-primary)] leading-snug group-hover:text-[var(--color-brand-accent)] transition-colors duration-300">
-                        {video.title}
-                      </h3>
-                      <FiExternalLink className="w-4 h-4 text-[var(--color-text-tertiary)] flex-shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-[var(--color-brand-primary)]/0 group-hover:bg-[var(--color-brand-primary)]/60 transition-colors duration-300 flex items-end">
+                    <div className="w-full p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-white font-semibold text-[0.9375rem]">{image.alt}</p>
+                      {image.caption && (
+                        <p className="text-white/80 text-[0.8125rem] mt-1">{image.caption}</p>
+                      )}
                     </div>
                   </div>
+
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </div>
+
+          {/* Empty State */}
+          {filteredImages.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-[var(--color-text-tertiary)]">No images found in this category.</p>
+            </motion.div>
+          )}
         </div>
 
         {/* Bottom Border */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
       </section>
+
+      {/* Lightbox Modal */}
+      {selectedImage !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+          >
+            <FiX className="w-6 h-6 text-white" />
+          </button>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
+            className="absolute left-4 md:left-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+          >
+            <FiChevronLeft className="w-6 h-6 text-white" />
+          </button>
+
+          <button
+            onClick={(e) => { e.stopPropagation(); goToNext(); }}
+            className="absolute right-4 md:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+          >
+            <FiChevronRight className="w-6 h-6 text-white" />
+          </button>
+
+          {/* Image Container */}
+          <div
+            className="relative max-w-4xl max-h-[80vh] w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative aspect-[4/3] bg-black/50 rounded-xl overflow-hidden">
+              <Image
+                src={filteredImages[selectedImage].src}
+                alt={filteredImages[selectedImage].alt}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 80vw"
+              />
+            </div>
+
+            {/* Caption */}
+            <div className="mt-4 text-center">
+              <p className="text-white font-semibold text-lg">{filteredImages[selectedImage].alt}</p>
+              {filteredImages[selectedImage].caption && (
+                <p className="text-white/70 mt-1">{filteredImages[selectedImage].caption}</p>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       <Footer />
     </main>

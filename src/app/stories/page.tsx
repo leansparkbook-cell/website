@@ -196,7 +196,20 @@ export default function StoriesPage() {
         {/* Top Border */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
-        <div className="relative max-w-[1280px] mx-auto">
+        {/* Elegant Double Border Frame */}
+        <div className="absolute inset-6 md:inset-10 lg:inset-16 pointer-events-none">
+          {/* Outer border */}
+          <div className="absolute inset-0 border border-[var(--color-brand-primary)]/[0.06] rounded-3xl" />
+          {/* Inner border with offset */}
+          <div className="absolute inset-3 border border-[var(--color-brand-primary)]/[0.04] rounded-2xl" />
+          {/* Corner accents */}
+          <div className="absolute -top-px -left-px w-12 h-12 border-t-2 border-l-2 border-[var(--color-brand-primary)]/20 rounded-tl-3xl" />
+          <div className="absolute -top-px -right-px w-12 h-12 border-t-2 border-r-2 border-[var(--color-brand-primary)]/20 rounded-tr-3xl" />
+          <div className="absolute -bottom-px -left-px w-12 h-12 border-b-2 border-l-2 border-[var(--color-brand-primary)]/20 rounded-bl-3xl" />
+          <div className="absolute -bottom-px -right-px w-12 h-12 border-b-2 border-r-2 border-[var(--color-brand-primary)]/20 rounded-br-3xl" />
+        </div>
+
+        <div className="relative max-w-[1280px] mx-auto z-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -211,7 +224,10 @@ export default function StoriesPage() {
               <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
             </div>
 
-            <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] mb-4">
+            <h1
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.03em] text-[#BD2220] mb-4 italic"
+              style={{ fontFamily: "var(--font-spectral), Georgia, serif" }}
+            >
               LinkedIn Insights
             </h1>
             <p className="text-[1.125rem] text-[var(--color-text-secondary)] max-w-2xl mx-auto">

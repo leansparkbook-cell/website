@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Quote } from "lucide-react";
 
 interface Endorsement {
@@ -38,6 +38,23 @@ const endorsements: Endorsement[] = [
 
 function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if device is mobile/touch
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleInteraction = () => {
+    if (isMobile) {
+      setIsFlipped(!isFlipped);
+    }
+  };
 
   return (
     <motion.div
@@ -46,8 +63,9 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true }}
       style={{ perspective: '1000px' }}
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      onMouseEnter={() => !isMobile && setIsFlipped(true)}
+      onMouseLeave={() => !isMobile && setIsFlipped(false)}
+      onClick={handleInteraction}
     >
       <motion.div
         className="relative w-full h-[460px] md:h-[520px] cursor-pointer"
@@ -83,7 +101,7 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
             </div>
 
             {/* Content */}
-            <div className="relative p-6 md:p-8">
+            <div className="relative p-5 md:p-8">
               {/* Quote Icon */}
               <div className="absolute -top-5 right-6 w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shadow-lg">
                 <Quote className="w-5 h-5 text-white" fill="white" />
@@ -97,9 +115,10 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
                 {endorsement.designation}
               </p>
 
-              {/* Hover Indicator */}
+              {/* Hover/Tap Indicator */}
               <div className="mt-6 flex items-center gap-2 text-[0.75rem] font-semibold tracking-[0.1em] uppercase text-[var(--color-brand-accent)]">
-                <span>Hover to Read</span>
+                <span className="md:inline hidden">Hover to Read</span>
+                <span className="md:hidden inline">Tap to Read</span>
                 <motion.span
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -130,7 +149,7 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
             />
 
             {/* Content */}
-            <div className="relative h-full flex flex-col p-6 md:p-8">
+            <div className="relative h-full flex flex-col p-5 md:p-8">
               {/* Quote Icon */}
               <div className="mb-5">
                 <Quote className="w-11 h-11 text-[var(--color-brand-accent)] opacity-60" fill="currentColor" />
@@ -138,19 +157,19 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
 
               {/* Quote Text */}
               <div className="flex-1 flex items-center">
-                <p className="text-[0.9375rem] md:text-[1.0625rem] leading-[1.65] font-normal" style={{ color: '#ffffff' }}>
-                  <span className="text-[var(--color-brand-accent)] text-[1.5rem] leading-none mr-1">"</span>
+                <p className="text-[0.875rem] md:text-[1.0625rem] leading-[1.7] md:leading-[1.65] font-normal" style={{ color: '#ffffff' }}>
+                  <span className="text-[var(--color-brand-accent)] text-[1.3rem] md:text-[1.5rem] leading-none mr-1">"</span>
                   {endorsement.quote}
-                  <span className="text-[var(--color-brand-accent)] text-[1.5rem] leading-none ml-1">"</span>
+                  <span className="text-[var(--color-brand-accent)] text-[1.3rem] md:text-[1.5rem] leading-none ml-1">"</span>
                 </p>
               </div>
 
               {/* Attribution */}
               <div className="mt-6 pt-5 border-t-2 border-[var(--color-brand-accent)]/30">
-                <p className="text-[0.9375rem] font-bold mb-2 tracking-[-0.01em]" style={{ color: '#ffffff' }}>
+                <p className="text-[0.875rem] md:text-[0.9375rem] font-bold mb-2 tracking-[-0.01em]" style={{ color: '#ffffff' }}>
                   — {endorsement.name}
                 </p>
-                <p className="text-[0.8125rem] leading-snug font-medium" style={{ color: '#ffffff' }}>
+                <p className="text-[0.75rem] md:text-[0.8125rem] leading-relaxed md:leading-snug font-medium" style={{ color: '#ffffff' }}>
                   {endorsement.designation}
                 </p>
               </div>
@@ -164,7 +183,7 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
 
 export default function EndorsementsSection() {
   return (
-    <section className="relative py-24 md:py-32 px-6 lg:px-12 bg-white overflow-hidden">
+    <section className="relative py-16 md:py-32 px-4 md:px-6 lg:px-12 bg-white overflow-hidden">
       <div className="relative max-w-[1400px] mx-auto">
         {/* Section Header */}
         <motion.div

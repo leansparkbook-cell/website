@@ -8,15 +8,28 @@ import { ShootingStars } from "@/components/ui/shooting-stars";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24 px-6 lg:px-12 pt-32 pb-24 max-w-[1280px] mx-auto overflow-hidden">
-      {/* === BACKGROUND LAYERS === */}
+    <div className="relative min-h-screen overflow-hidden">
+      {/* === BACKGROUND LAYERS (full viewport width) === */}
 
-      {/* Layer 1: Subtle dot pattern (kept as base) */}
+      {/* Layer 1: Subtle grid pattern */}
       <div
-        className="absolute inset-0 -z-10 opacity-[0.015]"
+        className="absolute inset-0 -z-10"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-primary) 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
+          backgroundImage: `
+            linear-gradient(to right, rgba(38, 56, 141, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(38, 56, 141, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '64px 64px'
+        }}
+      />
+
+      {/* Layer 1b: Grid fade overlay - fades grid at edges */}
+      <div
+        className="absolute inset-0 -z-[9] pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, white 100%)
+          `
         }}
       />
 
@@ -49,9 +62,10 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* === CONTENT (elevated z-index to stay above backgrounds) === */}
+      {/* === CONTENT CONTAINER (constrained width) === */}
+      <section className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24 px-6 lg:px-12 pt-32 pb-24 max-w-[1280px] mx-auto">
 
-      {/* Left Side - Text Content */}
+        {/* Left Side - Text Content */}
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
@@ -108,7 +122,7 @@ export default function HeroSection() {
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-3 px-8 py-4 bg-[#BD2220] text-white rounded-full font-semibold text-[0.9375rem] tracking-[-0.01em] transition-all duration-300 hover:bg-[#a01d1b]"
         >
-          Pre-Order Now
+          Order Now
           <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
             <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
           </span>
@@ -140,6 +154,7 @@ export default function HeroSection() {
           className="w-[240px] md:w-[300px] lg:w-[380px]"
         />
       </motion.div>
-    </section>
+      </section>
+    </div>
   );
 }
