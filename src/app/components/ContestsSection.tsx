@@ -153,28 +153,6 @@ export default function ContestsSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white border border-[var(--color-border)] shadow-[var(--shadow-sm)]">
-            <FiMail className="w-4 h-4 text-[var(--color-brand-accent)]" />
-            <span className="text-[0.875rem] text-[var(--color-text-secondary)]">
-              For queries or submissions:{" "}
-              <a
-                href="mailto:avnie.g@gmail.com"
-                className="font-semibold text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent)] transition-colors"
-              >
-                avnie.g@gmail.com
-              </a>
-            </span>
-          </div>
-        </motion.div>
       </div>
 
       {/* Bottom Border */}

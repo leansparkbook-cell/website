@@ -191,8 +191,8 @@ export default function StoriesPage() {
       {/* Spacer for fixed navbar */}
       <div className="h-24" />
 
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32 px-6 lg:px-12 overflow-hidden">
+      {/* Main Content Section */}
+      <section className="relative py-16 md:py-20 px-6 lg:px-12 overflow-hidden">
         {/* Top Border */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
@@ -209,12 +209,16 @@ export default function StoriesPage() {
           <div className="absolute -bottom-px -right-px w-12 h-12 border-b-2 border-r-2 border-[var(--color-brand-primary)]/20 rounded-br-3xl" />
         </div>
 
-        <div className="relative max-w-[1280px] mx-auto z-10">
+        {/* Bottom Border */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
+
+        {/* Header */}
+        <div className="relative max-w-[1280px] mx-auto z-10 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mb-16"
+            className="text-center"
           >
             <div className="flex items-center justify-center gap-4 mb-6">
               <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
@@ -236,11 +240,9 @@ export default function StoriesPage() {
             </p>
           </motion.div>
         </div>
-      </section>
 
-      {/* Posts Grid */}
-      <section className="relative pb-28 md:pb-36">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+        {/* Posts Grid */}
+        <div className="relative max-w-[1400px] mx-auto z-10">
           {/* Masonry-style grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {linkedInPosts.map((post, index) => (
@@ -327,9 +329,9 @@ export default function StoriesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mt-16 text-center"
+            className="mt-16 text-center flex flex-col items-center"
           >
-            <p className="text-black/40 text-sm mb-4">
+            <p className="text-black/40 text-sm mb-4 leading-6">
               Follow us for more insights
             </p>
             <div className="flex justify-center gap-3">
