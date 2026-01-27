@@ -12,6 +12,7 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://leansparkbook.com"),
   title: "LeanSpark — When Constraints Ignite Creativity",
   description: "A new book by Jaideep Prabhu, Mukesh Sud, and Priyank Narayan. Coming January 2026 at Jaipur Literature Festival.",
   keywords: ["LeanSpark", "innovation", "constraints", "creativity", "frugal design", "business book"],

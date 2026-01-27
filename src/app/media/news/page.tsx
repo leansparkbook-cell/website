@@ -47,6 +47,7 @@ interface NewsArticle {
   description: string;
   url: string;
   featured?: boolean;
+  thumbnail?: string;
 }
 
 const newsArticles: NewsArticle[] = [
@@ -85,6 +86,16 @@ const newsArticles: NewsArticle[] = [
     description:
       "The new book 'LeanSpark: Frugal by Design, Global in Impact' was unveiled at the Jaipur Literature Festival, examining India's innovation culture centered on resourcefulness and affordability.",
     url: "https://samacharnama.com/amp/states/rajasthan-news/new-book-leanspark-by-bestselling-coauthors-released-at/cid18155113.htm",
+  },
+  {
+    title: "LeanSpark: A New Way for India and the World to Make Growth Inclusive and Sustainable",
+    source: "The Week",
+    logo: "/the-week-logo.png",
+    date: "January 2026",
+    description:
+      "Jaideep Prabhu introduces LeanSpark as a modern framework that systematically transforms resource scarcity into competitive advantage through lean execution, purposeful simplicity, adaptive scalability, and systemic sustainability.",
+    url: "https://www.theweek.in/news/sci-tech/2026/01/20/leanspark-a-new-way-for-india-and-the-world-to-make-growth-inclusive-and-sustainable.html",
+    thumbnail: "/theweek-leanspark-thumb.jpg",
   },
 ];
 
@@ -224,7 +235,7 @@ export default function NewsPage() {
                   duration: 0.6,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="flex flex-col"
+                className="flex flex-col flex-1"
               >
                 {/* Publication Logo */}
                 <div className="h-20 flex items-center mb-6 px-1">
@@ -249,10 +260,11 @@ export default function NewsPage() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-[0.875rem] text-[var(--color-text-secondary)] leading-relaxed mb-5 line-clamp-3">
+                <p className="text-[0.875rem] text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
                   {article.description}
                 </p>
 
+                <div className="mt-auto pt-5" />
                 {/* Read More Button */}
                 <a
                   href={article.url}
