@@ -68,7 +68,9 @@ export default function NavBar() {
         // Already on home page, just scroll
         const element = document.getElementById(hash);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          const navbarHeight = 96;
+          const y = element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+          window.scrollTo({ top: y, behavior: "smooth" });
         }
       }
     }

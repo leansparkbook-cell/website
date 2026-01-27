@@ -34,6 +34,13 @@ const endorsements: Endorsement[] = [
       "LeanSpark resonates with individuals, consumers and global corporations. It starts with a mindset of achieving more using less—a value-adding framework which incorporates purposeful impact, scaling projects and proven tech. India's legacy of frugal innovation with cutting-edge technology.",
     image: "/PRS.jpg",
   },
+  {
+    name: "DR YUSUF HAMIED",
+    designation: "Non-Executive Chairman of Cipla Ltd.",
+    quote:
+      "India has both the opportunity and the responsibility to pioneer innovation that is affordable, scalable, and humane. LeanSpark captures this mission with clarity and conviction, combining rich stories with a thoughtful framework for action.",
+    image: "/yusuf.png",
+  },
 ];
 
 function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: number }) {
@@ -78,7 +85,7 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
           className="absolute inset-0 backface-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <div className="relative h-full bg-white rounded-2xl overflow-hidden border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-shadow duration-500">
+          <div className="relative h-full bg-white rounded-2xl overflow-hidden border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-shadow duration-500 flex flex-col">
             {/* Image */}
             <div className="relative h-[280px] md:h-[320px] overflow-hidden bg-white">
               <Image
@@ -87,11 +94,13 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
                 fill
                 className={`object-cover transition-all duration-700 hover:scale-105 ${
                   endorsement.image === "/SANJAY.jpg"
-                    ? "scale-[1.15] object-[center_10%]"
+                    ? "scale-[1.2] object-[center_15%]"
                     : endorsement.image === "/PRS.jpg"
-                    ? "scale-[1.07] object-[center_16%]"
+                    ? "scale-[1.1] object-[center_18%]"
                     : endorsement.image === "/RAMAK.jpg"
-                    ? "object-[center_10%]"
+                    ? "scale-[1.05] object-[center_12%]"
+                    : endorsement.image === "/yusuf.png"
+                    ? "scale-[1.05] object-[center_12%]"
                     : "object-top"
                 }`}
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -101,7 +110,7 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
             </div>
 
             {/* Content */}
-            <div className="relative p-5 md:p-8">
+            <div className="relative p-5 md:p-8 flex flex-col flex-1">
               {/* Quote Icon */}
               <div className="absolute -top-5 right-6 w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shadow-lg">
                 <Quote className="w-5 h-5 text-white" fill="white" />
@@ -116,7 +125,7 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
               </p>
 
               {/* Hover/Tap Indicator */}
-              <div className="mt-6 flex items-center gap-2 text-[0.75rem] font-semibold tracking-[0.1em] uppercase text-[var(--color-brand-accent)]">
+              <div className="mt-auto pt-4 flex items-center gap-2 text-[0.75rem] font-semibold tracking-[0.1em] uppercase text-[var(--color-brand-accent)]">
                 <span className="md:inline hidden">Hover to Read</span>
                 <span className="md:hidden inline">Tap to Read</span>
                 <motion.span
@@ -225,7 +234,7 @@ export default function EndorsementsSection() {
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {endorsements.map((endorsement, index) => (
             <FlipCard key={endorsement.name} endorsement={endorsement} index={index} />
           ))}

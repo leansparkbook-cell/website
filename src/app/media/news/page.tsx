@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import CursorSpark from "../../components/CursorSpark";
-import { FiExternalLink, FiCalendar } from "react-icons/fi";
+
 
 // Organic scattered dots - hand-placed for natural feel
 const scatteredDots = [
@@ -41,6 +42,7 @@ const scatteredDots = [
 interface NewsArticle {
   title: string;
   source: string;
+  logo: string;
   date: string;
   description: string;
   url: string;
@@ -49,13 +51,40 @@ interface NewsArticle {
 
 const newsArticles: NewsArticle[] = [
   {
+    title: "How LeanSpark Turns Scarcity into Innovation at Scale",
+    source: "Cambridge Judge Business School",
+    logo: "/cambridge-logo.png",
+    date: "January 2026",
+    description:
+      "This piece explores how LeanSpark leverages frugal innovation principles to convert resource constraints into scalable, sustainable growth opportunities, featuring insights from researcher Jaideep Prabhu.",
+    url: "https://www.jbs.cam.ac.uk/2026/how-leanspark-turns-scarcity-into-innovation-at-scale/",
+  },
+  {
+    title: "New Book Explores How India's Frugal Innovation Is Going Global",
+    source: "Passionate in Marketing",
+    logo: "/passionate-marketing-logo.png",
+    date: "January 2026",
+    description:
+      "LeanSpark by Jaideep Prabhu, Priyank Narayan, and Mukesh Sud examines how India's approach to resource-constrained problem-solving is gaining traction internationally.",
+    url: "https://www.passionateinmarketing.com/new-book-by-bestselling-co-authors-explores-how-indias-frugal-innovation-is-going-global/",
+  },
+  {
+    title: "LeanSpark: Frugal by Design, Global in Impact",
+    source: "Penguin Random House India",
+    logo: "/penguin-logo.png",
+    date: "January 2026",
+    description:
+      "India's 'high-tech jugaad' converts scarcity into innovation strength across drones, EVs, fintech, and AI. A practical framework for ventures that start small but scale smart.",
+    url: "https://www.penguin.co.in/book/leanspark/",
+  },
+  {
     title: "LeanSpark Book Launch at Jaipur Literature Festival",
     source: "Samachar Nama",
-    date: "January 24, 2026",
+    logo: "/samachar-nama-logo.png",
+    date: "January 2026",
     description:
-      "The new book 'LeanSpark: Frugal by Design, Global in Impact' was unveiled at the Jaipur Literature Festival. Co-authored by Jaideep Prabhu, Priyank Narayan, and Mukesh Sud, the work examines India's innovation culture centered on resourcefulness and affordability.",
+      "The new book 'LeanSpark: Frugal by Design, Global in Impact' was unveiled at the Jaipur Literature Festival, examining India's innovation culture centered on resourcefulness and affordability.",
     url: "https://samacharnama.com/amp/states/rajasthan-news/new-book-leanspark-by-bestselling-coauthors-released-at/cid18155113.htm",
-    featured: true,
   },
 ];
 
@@ -184,13 +213,10 @@ export default function NewsPage() {
           </motion.div>
 
           {/* News Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {newsArticles.map((article, idx) => (
-              <motion.a
+              <motion.div
                 key={article.url}
-                href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -198,41 +224,45 @@ export default function NewsPage() {
                   duration: 0.6,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`group block ${article.featured ? "md:col-span-2 lg:col-span-3" : ""}`}
+                className="flex flex-col"
               >
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-lg)] transition-all duration-300 group-hover:-translate-y-2 h-full">
-                  {/* Content */}
-                  <div className={`p-6 ${article.featured ? "md:p-8" : ""}`}>
-                    {/* Source & Date */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-[0.75rem] font-semibold text-[var(--color-brand-primary)] uppercase tracking-wide">
-                        {article.source}
-                      </span>
-                      <span className="w-1 h-1 rounded-full bg-[var(--color-text-tertiary)]" />
-                      <span className="flex items-center gap-1.5 text-[0.75rem] text-[var(--color-text-tertiary)]">
-                        <FiCalendar className="w-3 h-3" />
-                        {article.date}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className={`font-bold text-[var(--color-brand-primary)] leading-snug group-hover:text-[var(--color-brand-accent)] transition-colors duration-300 mb-3 ${article.featured ? "text-[1.5rem] md:text-[1.75rem]" : "text-[1.125rem]"}`}>
-                      {article.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className={`text-[var(--color-text-secondary)] leading-relaxed mb-4 ${article.featured ? "text-[1rem] md:text-[1.0625rem]" : "text-[0.9375rem] line-clamp-3"}`}>
-                      {article.description}
-                    </p>
-
-                    {/* Read More */}
-                    <div className="flex items-center gap-2 text-[0.875rem] font-semibold text-[var(--color-brand-accent)] group-hover:gap-3 transition-all duration-300">
-                      <span>Read Article</span>
-                      <FiExternalLink className="w-4 h-4" />
-                    </div>
-                  </div>
+                {/* Publication Logo */}
+                <div className="h-20 flex items-center mb-6 px-1">
+                  <Image
+                    src={article.logo}
+                    alt={article.source}
+                    width={128}
+                    height={128}
+                    className="h-14 w-14 object-contain rounded-lg"
+                    unoptimized
+                  />
                 </div>
-              </motion.a>
+
+                {/* Date */}
+                <span className="text-[0.6875rem] font-semibold tracking-[0.1em] uppercase text-[var(--color-text-tertiary)] mb-3">
+                  {article.date}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-[1rem] font-bold text-[var(--color-text-primary)] leading-snug mb-3">
+                  {article.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[0.875rem] text-[var(--color-text-secondary)] leading-relaxed mb-5 line-clamp-3">
+                  {article.description}
+                </p>
+
+                {/* Read More Button */}
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 self-start px-5 py-2.5 border border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] text-[0.8125rem] font-semibold tracking-[0.04em] uppercase rounded-sm hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors duration-300"
+                >
+                  Read More
+                </a>
+              </motion.div>
             ))}
           </div>
         </div>
