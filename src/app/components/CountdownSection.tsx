@@ -1,66 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
 export default function CountdownSection() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-  const [mounted, setMounted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    setMounted(true);
+    const video = videoRef.current;
+    if (!video) return;
 
-    const calculateTimeLeft = () => {
-      const targetDate = new Date("2026-01-15T00:00:00+05:30"); // Jan 15, 2026, IST
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        return { days, hours, minutes, seconds };
-      }
-
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    // Show first frame immediately
+    const handleLoaded = () => {
+      video.currentTime = 0.1;
     };
+    video.addEventListener("loadeddata", handleLoaded);
 
-    setTimeLeft(calculateTimeLeft());
+    // Autoplay when in viewport
+    observerRef.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
 
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+    observerRef.current.observe(video);
 
-    return () => clearInterval(timer);
+    return () => {
+      video.removeEventListener("loadeddata", handleLoaded);
+      observerRef.current?.disconnect();
+    };
   }, []);
-
-  const timeUnits = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
-  ];
-
-  if (!mounted) return null;
-
   return (
     <section className="py-16 md:py-20 px-6 bg-[var(--color-paper-warm)] relative overflow-hidden">
       {/* Polka dot background */}
@@ -88,15 +63,10 @@ export default function CountdownSection() {
           <div className="flex items-center justify-center gap-4 mb-6">
             <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
             <span className="text-[0.75rem] font-semibold tracking-[0.15em] uppercase text-[var(--color-text-tertiary)]">
-              Launching At JLF
+              Launched At JLF
             </span>
             <span className="w-8 h-[1px] bg-[var(--color-brand-accent)]" />
           </div>
-
-          {/* Date */}
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.035em] text-[var(--color-brand-primary)] mb-6">
-            January 15, 2026
-          </h2>
 
           {/* JLF Logo */}
           <motion.div
@@ -104,7 +74,7 @@ export default function CountdownSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-center gap-3 mb-6"
           >
             <div className="w-36 md:w-44 opacity-90 hover:opacity-100 transition-opacity duration-300">
               <img
@@ -117,30 +87,35 @@ export default function CountdownSection() {
               Official Launch Partner
             </span>
           </motion.div>
+
+          {/* Date */}
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.035em] text-[var(--color-brand-primary)]">
+            January 15, 2026
+          </h2>
         </motion.div>
 
-        {/* Countdown Grid */}
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-          {timeUnits.map((unit, index) => (
-            <motion.div
-              key={unit.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="group"
+        {/* Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="flex justify-center"
+        >
+          <div className="relative w-full max-w-3xl rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(38,56,141,0.2)] border border-[var(--color-border)]">
+            <video
+              ref={videoRef}
+              className="w-full h-auto block"
+              controls
+              muted
+              playsInline
+              preload="auto"
             >
-              <div className="w-24 h-24 md:w-32 md:h-32 flex flex-col items-center justify-center bg-white rounded-2xl border border-[var(--color-border)] shadow-[var(--shadow-sm)] group-hover:shadow-[var(--shadow-lg)] group-hover:border-[var(--color-brand-primary)]/20 group-hover:-translate-y-1 transition-all duration-300">
-                <span className="block font-bold text-3xl md:text-4xl text-[var(--color-brand-primary)] tabular-nums tracking-tight">
-                  {String(unit.value).padStart(2, "0")}
-                </span>
-                <span className="text-[0.625rem] md:text-[0.6875rem] font-semibold tracking-[0.12em] uppercase text-[var(--color-text-muted)] mt-1">
-                  {unit.label}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              <source src="/jlf-launch.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom Border */}
