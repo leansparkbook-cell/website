@@ -52,6 +52,16 @@ interface NewsArticle {
 
 const newsArticles: NewsArticle[] = [
   {
+    title: "LeanSpark Featured in Deccan Herald's Bookrack",
+    source: "Deccan Herald",
+    logo: "/deccan-herald-logo.jpg",
+    date: "February 2026",
+    description:
+      "LeanSpark by Jaideep Prabhu, Mukesh Sud & Priyank Narayan featured in the Bookrack section of Deccan Herald's Bangalore edition. The book shows how India's 'high-tech jugaad' is turning scarcity into an innovation superpower across drones, EVs, fintech, AI, sports, space and public policy.",
+    url: "",
+    thumbnail: "/media-sec/WhatsApp Image 2026-02-01 at 19.56.56.jpeg",
+  },
+  {
     title: "How LeanSpark Turns Scarcity into Innovation at Scale",
     source: "Cambridge Judge Business School",
     logo: "/cambridge-logo.png",
@@ -227,7 +237,7 @@ export default function NewsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {newsArticles.map((article, idx) => (
               <motion.div
-                key={article.url}
+                key={article.title}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -266,14 +276,16 @@ export default function NewsPage() {
 
                 <div className="mt-auto pt-5" />
                 {/* Read More Button */}
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 self-start px-5 py-2.5 border border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] text-[0.8125rem] font-semibold tracking-[0.04em] uppercase rounded-sm hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors duration-300"
-                >
-                  Read More
-                </a>
+                {article.url && (
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 self-start px-5 py-2.5 border border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] text-[0.8125rem] font-semibold tracking-[0.04em] uppercase rounded-sm hover:bg-[var(--color-brand-primary)] hover:text-white transition-colors duration-300"
+                  >
+                    Read More
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>

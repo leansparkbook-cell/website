@@ -25,20 +25,11 @@ export const metadata: Metadata = {
     title: "LeanSpark — When Constraints Ignite Creativity",
     description: "A new book coming January 2026 at Jaipur Literature Festival.",
     type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "LeanSpark — When Constraints Ignite Creativity",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "LeanSpark — When Constraints Ignite Creativity",
     description: "A new book coming January 2026 at Jaipur Literature Festival.",
-    images: ["/og-image.png"],
   },
 };
 
