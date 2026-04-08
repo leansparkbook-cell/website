@@ -108,6 +108,12 @@ const galleryImages: GalleryImage[] = [
     caption: "Dinner event celebration",
     category: "Events",
   },
+  {
+    src: "/gallery/gallery-11.jpeg",
+    alt: "Dr. Priyank Narayan",
+    caption: "Dr. Priyank Narayan, Co-author of LeanSpark",
+    category: "Authors",
+  },
 ];
 
 export default function GalleryPage() {
@@ -301,14 +307,12 @@ export default function GalleryPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-[var(--color-brand-primary)]/0 group-hover:bg-[var(--color-brand-primary)]/60 transition-colors duration-300 flex items-end">
-                    <div className="w-full p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-white font-semibold text-[0.9375rem]">{image.alt}</p>
-                      {image.caption && (
-                        <p className="text-white/80 text-[0.8125rem] mt-1">{image.caption}</p>
-                      )}
-                    </div>
+                  {/* Caption bar - slides up from bottom on hover */}
+                  <div className="absolute bottom-0 left-0 right-0 z-10 px-4 py-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" style={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}>
+                    <p className="font-semibold text-[0.9375rem]" style={{ color: '#ffffff' }}>{image.alt}</p>
+                    {image.caption && (
+                      <p className="text-[0.8125rem] mt-0.5" style={{ color: '#ffffff' }}>{image.caption}</p>
+                    )}
                   </div>
 
                 </div>
@@ -326,6 +330,18 @@ export default function GalleryPage() {
               <p className="text-[var(--color-text-tertiary)]">No images found in this category.</p>
             </motion.div>
           )}
+
+          {/* Credit & Media Usage Notice */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-16 pt-8 border-t border-[var(--color-border)] text-center w-full flex items-center justify-center"
+          >
+            <p className="text-[0.875rem]" style={{ color: '#71717A' }}>
+              These pictures are available for use by the media. For high-resolution versions, please get in touch.
+            </p>
+          </motion.div>
         </div>
 
         {/* Bottom Border */}

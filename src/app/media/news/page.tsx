@@ -43,69 +43,128 @@ interface NewsArticle {
   title: string;
   source: string;
   logo: string;
+  logoWidth?: number;
   date: string;
   description: string;
   url: string;
   featured?: boolean;
   thumbnail?: string;
+  thumbnailFit?: "cover" | "contain";
+  thumbnailClassName?: string;
 }
 
 const newsArticles: NewsArticle[] = [
   {
+    title: "How Far Can Frugal Innovation Go? Where Indian Startups Get Scaling Wrong",
+    source: "CNBCTV18",
+    logo: "/cnbctv18-logo.jpg",
+    logoWidth: 160,
+    date: "April 2026",
+    description:
+      "An exploration of how far frugal innovation can take Indian startups—and where the common pitfalls in scaling lie. Featuring insights from the LeanSpark framework on building ventures that grow sustainably.",
+    url: "https://www.cnbctv18.com/business/startup/how-far-can-frugal-innovation-go-where-indian-startups-get-scaling-wrong-ws-l-19880266.htm",
+    thumbnail: "/cnbctv18-og.jpg",
+  },
+  {
+    title: "India Is Now Using Lean Innovation in High-Tech — It's Sparked by Our Economics and Geopolitics",
+    source: "The Economic Times",
+    logo: "/economic-times-logo.png",
+    logoWidth: 188,
+    date: "March 2026",
+    description:
+      "India is applying lean innovation in high-tech sectors, driven by unique economic conditions and geopolitical dynamics from both East and West. A deep dive into the forces shaping India's innovation landscape.",
+    url: "https://economictimes.indiatimes.com/news/et-evoke/india-is-now-using-lean-innovation-in-high-tech-its-sparked-by-our-economics-and-geopolitics-from-both-east-and-west/articleshow/127945533.cms",
+    thumbnail: "/et-og.jpg",
+  },
+  {
+    title: "India's Frugal Innovation Powering Its Superpower Roadmap",
+    source: "Firstpost",
+    logo: "/firstpost-logo.png",
+    logoWidth: 44,
+    date: "February 2026",
+    description:
+      "Cambridge professor Jaideep Prabhu discusses how India's frugal innovation is powering the country's superpower roadmap, turning resource constraints into a strategic advantage across technology and industry.",
+    url: "https://www.firstpost.com/business/indias-frugal-innovation-powering-its-superpower-roadmap-cambridge-professor-jaideep-prabhu-exclusive-13980646.html",
+    thumbnail: "/firstpost-og.jpg",
+  },
+  {
+    title: "SpaceX, China Pose Biggest Threat to ISRO's Cost Advantage, Warns a New Book",
+    source: "Business Today",
+    logo: "/business-today-logo.png",
+    logoWidth: 168,
+    date: "February 2026",
+    description:
+      "LeanSpark warns that reusable rockets from SpaceX and rapid advances by China are eroding ISRO's traditional cost advantage in space launches, urging a rethink of India's space innovation strategy.",
+    url: "https://businesstoday.in/india/story/spacex-china-pose-biggest-threat-to-isros-cost-advantage-warns-a-new-book-514880-2026-02-06",
+    thumbnail: "/businesstoday-og.jpg",
+  },
+  {
     title: "LeanSpark Featured in Deccan Herald's Bookrack",
     source: "Deccan Herald",
     logo: "/deccan-herald-logo.jpg",
+    logoWidth: 52,
     date: "February 2026",
     description:
       "LeanSpark by Jaideep Prabhu, Mukesh Sud & Priyank Narayan featured in the Bookrack section of Deccan Herald's Bangalore edition. The book shows how India's 'high-tech jugaad' is turning scarcity into an innovation superpower across drones, EVs, fintech, AI, sports, space and public policy.",
     url: "",
-    thumbnail: "/media-sec/WhatsApp Image 2026-02-01 at 19.56.56.jpeg",
+    thumbnail: "/deccan-herald-og.jpg",
+    thumbnailFit: "contain",
+    thumbnailClassName: "bg-white p-6",
   },
   {
     title: "How LeanSpark Turns Scarcity into Innovation at Scale",
     source: "Cambridge Judge Business School",
     logo: "/cambridge-logo.png",
+    logoWidth: 48,
     date: "January 2026",
     description:
       "This piece explores how LeanSpark leverages frugal innovation principles to convert resource constraints into scalable, sustainable growth opportunities, featuring insights from researcher Jaideep Prabhu.",
     url: "https://www.jbs.cam.ac.uk/2026/how-leanspark-turns-scarcity-into-innovation-at-scale/",
+    thumbnail: "/cambridge-og.jpg",
   },
   {
     title: "New Book Explores How India's Frugal Innovation Is Going Global",
     source: "Passionate in Marketing",
     logo: "/passionate-marketing-logo.png",
+    logoWidth: 48,
     date: "January 2026",
     description:
       "LeanSpark by Jaideep Prabhu, Priyank Narayan, and Mukesh Sud examines how India's approach to resource-constrained problem-solving is gaining traction internationally.",
     url: "https://www.passionateinmarketing.com/new-book-by-bestselling-co-authors-explores-how-indias-frugal-innovation-is-going-global/",
+    thumbnail: "/pim-og.webp",
   },
   {
     title: "LeanSpark: Frugal by Design, Global in Impact",
     source: "Penguin Random House India",
     logo: "/penguin-logo.png",
+    logoWidth: 34,
     date: "January 2026",
     description:
       "India's 'high-tech jugaad' converts scarcity into innovation strength across drones, EVs, fintech, and AI. A practical framework for ventures that start small but scale smart.",
     url: "https://www.penguin.co.in/book/leanspark/",
+    thumbnail: "/penguin-og.jpg",
   },
   {
     title: "LeanSpark Book Launch at Jaipur Literature Festival",
     source: "Samachar Nama",
     logo: "/samachar-nama-logo.png",
+    logoWidth: 40,
     date: "January 2026",
     description:
       "The new book 'LeanSpark: Frugal by Design, Global in Impact' was unveiled at the Jaipur Literature Festival, examining India's innovation culture centered on resourcefulness and affordability.",
     url: "https://samacharnama.com/amp/states/rajasthan-news/new-book-leanspark-by-bestselling-coauthors-released-at/cid18155113.htm",
+    thumbnail: "/samacharnama-og.png",
   },
   {
     title: "LeanSpark: A New Way for India and the World to Make Growth Inclusive and Sustainable",
     source: "The Week",
-    logo: "/the-week-logo.png",
+    logo: "/the-week-logo-official.png",
+    logoWidth: 144,
     date: "January 2026",
     description:
       "Jaideep Prabhu introduces LeanSpark as a modern framework that systematically transforms resource scarcity into competitive advantage through lean execution, purposeful simplicity, adaptive scalability, and systemic sustainability.",
     url: "https://www.theweek.in/news/sci-tech/2026/01/20/leanspark-a-new-way-for-india-and-the-world-to-make-growth-inclusive-and-sustainable.html",
-    thumbnail: "/theweek-leanspark-thumb.jpg",
+    thumbnail: "/theweek-og.jpg",
   },
 ];
 
@@ -247,16 +306,35 @@ export default function NewsPage() {
                 }}
                 className="flex flex-col flex-1"
               >
+                {/* Cover Image */}
+                {article.thumbnail && (
+                  <div
+                    className={`relative mb-5 w-full aspect-[16/9] overflow-hidden rounded-[1.25rem] border border-[var(--color-brand-primary)]/[0.08] bg-[var(--color-border-light)] ${article.thumbnailClassName ?? ""}`}
+                  >
+                    <Image
+                      src={article.thumbnail}
+                      alt={article.title}
+                      fill
+                      className={article.thumbnailFit === "contain" ? "object-contain" : "object-cover"}
+                      unoptimized
+                    />
+                  </div>
+                )}
+
                 {/* Publication Logo */}
-                <div className="h-20 flex items-center mb-6 px-1">
-                  <Image
-                    src={article.logo}
-                    alt={article.source}
-                    width={128}
-                    height={128}
-                    className="h-14 w-14 object-contain rounded-lg"
-                    unoptimized
-                  />
+                <div className="mb-6 flex min-h-20 items-center">
+                  <div className="inline-flex min-h-[4.5rem] items-center rounded-[1.25rem] border border-[var(--color-brand-primary)]/[0.08] bg-white/90 px-4 py-3 shadow-[0_14px_35px_rgba(15,23,42,0.06)] backdrop-blur-sm">
+                    <div className="relative h-10" style={{ width: article.logoWidth ?? 152 }}>
+                      <Image
+                        src={article.logo}
+                        alt={article.source}
+                        fill
+                        sizes={`${article.logoWidth ?? 152}px`}
+                        className="object-contain object-left"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Date */}
@@ -265,12 +343,12 @@ export default function NewsPage() {
                 </span>
 
                 {/* Title */}
-                <h3 className="text-[1rem] font-bold text-[var(--color-text-primary)] leading-snug mb-3">
+                <h3 className="mb-3 line-clamp-4 min-h-[5.5rem] text-[1rem] font-bold leading-snug text-[var(--color-text-primary)] md:min-h-[5.75rem]">
                   {article.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[0.875rem] text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
+                <p className="min-h-[4.75rem] text-[0.875rem] leading-relaxed text-[var(--color-text-secondary)] line-clamp-3">
                   {article.description}
                 </p>
 
