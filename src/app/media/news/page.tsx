@@ -343,12 +343,12 @@ export default function NewsPage() {
                 </span>
 
                 {/* Title */}
-                <h3 className="mb-3 line-clamp-4 min-h-[5.5rem] text-[1rem] font-bold leading-snug text-[var(--color-text-primary)] md:min-h-[5.75rem]">
+                <h3 className="mb-3 text-[1rem] font-bold leading-snug text-[var(--color-text-primary)]">
                   {article.title}
                 </h3>
 
                 {/* Description */}
-                <p className="min-h-[4.75rem] text-[0.875rem] leading-relaxed text-[var(--color-text-secondary)] line-clamp-3">
+                <p className="text-[0.875rem] leading-relaxed text-[var(--color-text-secondary)]">
                   {article.description}
                 </p>
 
