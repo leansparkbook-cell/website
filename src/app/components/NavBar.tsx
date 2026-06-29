@@ -83,12 +83,28 @@ export default function NavBar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled
-            ? "bg-white/90 backdrop-blur-2xl shadow-[0_1px_0_0_rgba(38,56,141,0.06)] py-4"
-            : "bg-transparent py-6"
+          isScrolled ? "py-3" : "py-5"
         }`}
       >
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-6">
+          <div
+            className={`relative flex items-center justify-between rounded-2xl border px-6 lg:px-10 py-3 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isScrolled
+                ? "border-[var(--color-border-strong)] bg-white/80 backdrop-blur-2xl shadow-[0_8px_32px_-12px_rgba(38,56,141,0.20)]"
+                : "border-[var(--color-border)] bg-white/50 backdrop-blur-md shadow-[0_2px_16px_-12px_rgba(38,56,141,0.12)]"
+            }`}
+          >
+            {/* Corner crosshair markers — greptile-style brand accents */}
+            {["-top-1.5 -left-1.5", "-top-1.5 -right-1.5", "-bottom-1.5 -left-1.5", "-bottom-1.5 -right-1.5"].map((pos) => (
+              <span
+                key={pos}
+                className={`pointer-events-none absolute ${pos} h-3 w-3 text-[var(--color-brand-primary)]/30`}
+                aria-hidden="true"
+              >
+                <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-current" />
+                <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
+              </span>
+            ))}
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-2">
             <span className="text-[2rem] md:text-[2.25rem] font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] group-hover:text-[var(--color-brand-accent)] transition-colors duration-300">
@@ -240,6 +256,7 @@ export default function NavBar() {
           >
             {isMobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
+          </div>
         </div>
       </motion.nav>
 

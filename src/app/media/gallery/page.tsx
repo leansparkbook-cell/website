@@ -338,9 +338,23 @@ export default function GalleryPage() {
             transition={{ duration: 0.6, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mt-16 pt-8 border-t border-[var(--color-border)] text-center w-full flex items-center justify-center"
           >
-            <p className="text-[0.875rem]" style={{ color: '#71717A' }}>
-              These pictures are available for use by the media. For high-resolution versions, please get in touch.
-            </p>
+            <div>
+              <p className="text-[0.875rem]" style={{ color: '#71717A' }}>
+                These pictures are available for use by the media. For high-resolution versions, please get in touch.
+              </p>
+              <p className="text-[0.875rem] mt-3" style={{ color: '#71717A' }}>
+                Images in this section are licensed under a{" "}
+                <a
+                  href="https://creativecommons.org/licenses/by-sa/4.0/"
+                  target="_blank"
+                  rel="noopener noreferrer license"
+                  className="underline hover:text-[var(--color-brand-primary)] transition-colors"
+                >
+                  Creative Commons Attribution-ShareAlike 4.0
+                </a>{" "}
+                International License
+              </p>
+            </div>
           </motion.div>
         </div>
 

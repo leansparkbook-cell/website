@@ -55,6 +55,65 @@ interface NewsArticle {
 
 const newsArticles: NewsArticle[] = [
   {
+    title: "Book Review | No Money, No Problem",
+    source: "The Asian Age",
+    logo: "/asianage-logo.png",
+    logoWidth: 166,
+    date: "May 2026",
+    description:
+      "Sujit Bhar reviews LeanSpark for The Asian Age, calling it a case-study-rich account of how Indian entrepreneurs turn resource constraints into scalable, sustainable businesses. The review highlights how a 'resource-constraint mindset sparks creativity,' helping founders spot overlooked gaps and build without venture-capital excess.",
+    url: "https://www.pressreader.com/india/the-asian-age/20260524/282003269077483",
+    thumbnail: "/asianage-og.jpg",
+    thumbnailFit: "contain",
+    thumbnailClassName: "bg-white p-6",
+  },
+  {
+    title: "Book Review | No Money, No Problem",
+    source: "Deccan Chronicle",
+    logo: "/deccan-chronicle-logo.png",
+    logoWidth: 193,
+    date: "May 2026",
+    description:
+      "Deccan Chronicle's books section features LeanSpark in a review titled 'No Money, No Problem,' documenting how frugal design lets Indian founders build scalable ventures under tight financial limits. The book is positioned as motivational guidance for aspiring entrepreneurs working without deep capital.",
+    url: "https://www.deccanchronicle.com/lifestyle/booksart/book-review-no-money-no-problem-1958666",
+    thumbnail: "/deccan-chronicle-og.webp",
+    thumbnailFit: "contain",
+    thumbnailClassName: "bg-white p-6",
+  },
+  {
+    title: "India's Frugal AI Models Are a Blueprint for Resource-Strapped Nations",
+    source: "Rest of World",
+    logo: "/restofworld-logo.svg",
+    logoWidth: 160,
+    date: "April 2026",
+    description:
+      "Writing for Rest of World, LeanSpark authors Jaideep Prabhu, Priyank Narayan, and Mukesh Sud argue that Indian AI startups like Sarvam and Krutrim offer a blueprint for resource-strapped nations. Their lightweight, multilingual models run on low-end devices and limited bandwidth—frugal innovation enabling technological self-reliance without massive capital.",
+    url: "https://restofworld.org/2026/india-frugal-ai-sarvam-krutrim-sovereign/",
+    thumbnail: "/restofworld-og.jpg",
+  },
+  {
+    title: "“They Have ‘Jugaad’”: South Korean President Lauds India's Ability to Find Creative Solutions",
+    source: "ANI News",
+    logo: "/ani-logo.png",
+    logoWidth: 142,
+    date: "April 2026",
+    description:
+      "ANI reports on the South Korean President lauding India's knack for 'jugaad'—its ability to find creative, low-cost solutions—echoing the frugal-innovation thesis at the heart of LeanSpark.",
+    url: "https://www.youtube.com/watch?v=R2A13UuMTmM",
+    thumbnail: "/ani-og.jpg",
+  },
+  {
+    title: "Entrepreneurship Cell Set Up at Bright B-School in Hubballi",
+    source: "The Hindu",
+    logo: "/thehindu-logo.svg",
+    logoWidth: 200,
+    date: "April 2026",
+    description:
+      "The Hindu covers the launch of the iCreate Entrepreneurship Cell at Bright Business School, Hubballi, inaugurated alongside a LeanSpark book event with co-author Jaideep Prabhu. The initiative promotes innovative problem-solving and collaboration among aspiring entrepreneurs.",
+    url: "https://www.thehindu.com/news/national/karnataka/entrepreneurship-cell-set-up-at-bright-b-school-in-hubballi/article70869445.ece",
+    thumbnail: "/thehindu-og.jpg",
+  },
+  {
     title: "How Far Can Frugal Innovation Go? Where Indian Startups Get Scaling Wrong",
     source: "CNBCTV18",
     logo: "/cnbctv18-logo.jpg",

@@ -11,24 +11,44 @@ export default function HeroSection() {
     <div className="relative min-h-screen overflow-hidden">
       {/* === BACKGROUND LAYERS (full viewport width) === */}
 
-      {/* Layer 1: Subtle grid pattern */}
+      {/* Layer 1: Brand grid pattern */}
       <div
         className="absolute inset-0 -z-10"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(38, 56, 141, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(38, 56, 141, 0.03) 1px, transparent 1px)
+            linear-gradient(to right, rgba(38, 56, 141, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(38, 56, 141, 0.05) 1px, transparent 1px)
           `,
           backgroundSize: '64px 64px'
         }}
       />
 
-      {/* Layer 1b: Grid fade overlay - fades grid at edges */}
+      {/* Layer 1b: Halftone dot texture - adds tactile depth */}
       <div
-        className="absolute inset-0 -z-[9] pointer-events-none"
+        className="absolute inset-0 -z-[9]"
+        style={{
+          backgroundImage: `radial-gradient(rgba(38, 56, 141, 0.10) 1.25px, transparent 1.25px)`,
+          backgroundSize: '22px 22px'
+        }}
+      />
+
+      {/* Layer 1c: Soft brand glow - lifts the page off flat white */}
+      <div
+        className="absolute inset-0 -z-[8] pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, white 100%)
+            radial-gradient(ellipse 50% 45% at 75% 32%, rgba(196, 169, 98, 0.14), transparent 70%),
+            radial-gradient(ellipse 55% 50% at 18% 72%, rgba(38, 56, 141, 0.09), transparent 70%)
+          `
+        }}
+      />
+
+      {/* Layer 1d: Edge fade - keeps texture in the center, softens edges */}
+      <div
+        className="absolute inset-0 -z-[7] pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 92% 78% at 50% 45%, transparent 42%, var(--color-brand-bg) 92%)
           `
         }}
       />
