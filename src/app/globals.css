@@ -413,6 +413,99 @@ p {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
+   SECTION BACKGROUND TEXTURE SYSTEM
+   Cohesive: one brand-blue ink, whisper-low opacity, a soft radial edge-fade.
+   Distinct: a small motif vocabulary (dots · stripes · crosshatch · grid),
+   varied per section so neighbours never repeat. Subtle, sleek, noticeable.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.tx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Soft elliptical fade keeps texture in the body and melts it into the edges */
+  -webkit-mask-image: radial-gradient(ellipse 96% 78% at 50% 40%, #000 56%, transparent 100%);
+  mask-image: radial-gradient(ellipse 96% 78% at 50% 40%, #000 56%, transparent 100%);
+}
+
+/* Dot matrix — quiet, technical */
+.tx-dots {
+  background-image: radial-gradient(rgba(38, 56, 141, 0.11) 1.3px, transparent 1.4px);
+  background-size: 26px 26px;
+}
+
+/* Airy oversized dots — open, editorial */
+.tx-dots-lg {
+  background-image: radial-gradient(rgba(38, 56, 141, 0.09) 1.6px, transparent 1.7px);
+  background-size: 44px 44px;
+}
+
+/* Diagonal pinstripes (⁄) — forward momentum */
+.tx-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(38, 56, 141, 0.05) 0,
+    rgba(38, 56, 141, 0.05) 1px,
+    transparent 1px,
+    transparent 11px
+  );
+}
+
+/* Mirror pinstripes (╲) warmed with gold — premium counterpoint */
+.tx-stripes-gold {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(196, 169, 98, 0.12) 0,
+    rgba(196, 169, 98, 0.12) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+
+/* Crosshatch weave — structured, woven */
+.tx-crosshatch {
+  background-image:
+    repeating-linear-gradient(45deg, rgba(38, 56, 141, 0.045) 0, rgba(38, 56, 141, 0.045) 1px, transparent 1px, transparent 16px),
+    repeating-linear-gradient(-45deg, rgba(38, 56, 141, 0.045) 0, rgba(38, 56, 141, 0.045) 1px, transparent 1px, transparent 16px);
+}
+
+/* Crosshatch with a red whisper — energetic, for calls-to-action */
+.tx-crosshatch-accent {
+  background-image:
+    repeating-linear-gradient(45deg, rgba(38, 56, 141, 0.05) 0, rgba(38, 56, 141, 0.05) 1px, transparent 1px, transparent 21px),
+    repeating-linear-gradient(-45deg, rgba(189, 34, 32, 0.04) 0, rgba(189, 34, 32, 0.04) 1px, transparent 1px, transparent 21px);
+}
+
+/* Blueprint grid — precise, architectural */
+.tx-grid {
+  background-image:
+    linear-gradient(to right, rgba(38, 56, 141, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(38, 56, 141, 0.055) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Graph grid with gold nodes at the intersections — refined */
+.tx-grid-gold {
+  background-image:
+    linear-gradient(to right, rgba(38, 56, 141, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(38, 56, 141, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(196, 169, 98, 0.18) 1.1px, transparent 1.6px);
+  background-size: 34px 34px, 34px 34px, 34px 34px;
+  background-position: 0 0, 0 0, 17px 17px;
+}
+
+/* Grid on a dark ground — for the footer */
+.tx-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 130% at 50% 0%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 70% 130% at 50% 0%, #000 25%, transparent 78%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
    SELECTION & FOCUS STYLES
    ═══════════════════════════════════════════════════════════════════════════════ */
 

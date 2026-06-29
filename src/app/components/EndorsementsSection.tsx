@@ -193,6 +193,9 @@ function FlipCard({ endorsement, index }: { endorsement: Endorsement; index: num
 export default function EndorsementsSection() {
   return (
     <section className="relative py-16 md:py-32 px-4 md:px-6 lg:px-12 bg-white overflow-hidden">
+      {/* Section texture — airy oversized dots */}
+      <div className="tx tx-dots-lg" aria-hidden="true" />
+
       <div className="relative max-w-[1400px] mx-auto">
         {/* Section Header */}
         <motion.div

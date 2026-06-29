@@ -38,14 +38,8 @@ export default function CountdownSection() {
   }, []);
   return (
     <section className="py-16 md:py-20 px-6 bg-[var(--color-paper-warm)] relative overflow-hidden">
-      {/* Polka dot background */}
-      <div
-        className="absolute inset-0 opacity-[0.15] pointer-events-none z-0"
-        style={{
-          backgroundImage: `radial-gradient(circle, var(--color-brand-primary) 1.5px, transparent 1.5px)`,
-          backgroundSize: '32px 32px'
-        }}
-      />
+      {/* Section texture — dot matrix */}
+      <div className="tx tx-dots" aria-hidden="true" />
 
       {/* Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent z-10" />

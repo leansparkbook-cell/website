@@ -41,6 +41,9 @@ export default function AboutSection() {
       id="about"
       className="relative py-32 md:py-40 px-6 lg:px-12 bg-white overflow-hidden"
     >
+      {/* Section texture — diagonal pinstripes */}
+      <div className="tx tx-stripes" aria-hidden="true" />
+
       {/* Electric Sparky Background - Hand-drawn style */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Lightning bolt 1 - top left */}

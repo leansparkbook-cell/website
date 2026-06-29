@@ -41,13 +41,8 @@ const attributes = [
 export default function AttributesSection() {
   return (
     <section className="relative bg-[#faf9f7] py-28 md:py-36 overflow-hidden">
-      {/* Subtle texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.4]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
+      {/* Section texture — crosshatch weave */}
+      <div className="tx tx-crosshatch" aria-hidden="true" />
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}

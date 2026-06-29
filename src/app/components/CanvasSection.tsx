@@ -26,6 +26,9 @@ export default function CanvasSection() {
 
   return (
     <section id="canvas" className="relative py-24 md:py-32 px-6 lg:px-12 bg-white overflow-hidden">
+      {/* Section texture — blueprint grid */}
+      <div className="tx tx-grid" aria-hidden="true" />
+
       {/* Ambient gradient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[var(--color-brand-accent)]/[0.03] via-transparent to-transparent pointer-events-none" />
 

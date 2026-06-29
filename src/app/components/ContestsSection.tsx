@@ -38,12 +38,15 @@ export default function ContestsSection() {
   return (
     <section
       id="contests"
-      className="relative py-24 md:py-32 px-6 lg:px-12 bg-[var(--color-paper-warm)]"
+      className="relative py-24 md:py-32 px-6 lg:px-12 bg-[var(--color-paper-warm)] overflow-hidden"
     >
+      {/* Section texture — crosshatch with a red whisper */}
+      <div className="tx tx-crosshatch-accent" aria-hidden="true" />
+
       {/* Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
-      <div className="max-w-[1280px] mx-auto">
+      <div className="relative z-10 max-w-[1280px] mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}

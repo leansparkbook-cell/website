@@ -29,14 +29,8 @@ export default function WhyNowSection() {
       {/* Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border-strong)] to-transparent" />
 
-      {/* Subtle background pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-primary) 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }}
-      />
+      {/* Section texture — gold mirror pinstripes */}
+      <div className="tx tx-stripes-gold" aria-hidden="true" />
 
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-32 h-32 border border-[var(--color-brand-primary)]/[0.06] rounded-full" />
