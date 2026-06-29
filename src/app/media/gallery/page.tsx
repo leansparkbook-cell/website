@@ -339,10 +339,10 @@ export default function GalleryPage() {
             className="mt-16 pt-8 border-t border-[var(--color-border)] text-center w-full flex items-center justify-center"
           >
             <div>
-              <p className="text-[0.875rem]" style={{ color: '#71717A' }}>
+              <p className="text-[0.875rem] max-w-none md:whitespace-nowrap" style={{ color: '#71717A' }}>
                 These pictures are available for use by the media. For high-resolution versions, please get in touch.
               </p>
-              <p className="text-[0.875rem] mt-3" style={{ color: '#71717A' }}>
+              <p className="text-[0.875rem] mt-3 max-w-none md:whitespace-nowrap" style={{ color: '#71717A' }}>
                 Images in this section are licensed under a{" "}
                 <a
                   href="https://creativecommons.org/licenses/by-sa/4.0/"
