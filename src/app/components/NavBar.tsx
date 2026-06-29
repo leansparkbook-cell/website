@@ -83,15 +83,15 @@ export default function NavBar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled ? "py-3" : "py-5"
+          isScrolled ? "py-2" : "py-3.5"
         }`}
       >
         <div className="max-w-[1280px] mx-auto px-4 lg:px-6">
           <div
-            className={`relative flex items-center justify-between rounded-2xl border px-6 lg:px-10 py-3 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`relative flex items-center justify-between rounded-none border px-6 lg:px-10 py-2 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isScrolled
-                ? "border-[var(--color-border-strong)] bg-white/80 backdrop-blur-2xl shadow-[0_8px_32px_-12px_rgba(38,56,141,0.20)]"
-                : "border-[var(--color-border)] bg-white/50 backdrop-blur-md shadow-[0_2px_16px_-12px_rgba(38,56,141,0.12)]"
+                ? "border-[var(--color-brand-primary)]/20 bg-white/85 backdrop-blur-2xl shadow-[0_10px_30px_-16px_rgba(38,56,141,0.22)]"
+                : "border-[var(--color-brand-primary)]/12 bg-white/60 backdrop-blur-md shadow-[0_2px_14px_-12px_rgba(38,56,141,0.10)]"
             }`}
           >
             {/* Corner crosshair markers — greptile-style brand accents */}
@@ -107,7 +107,7 @@ export default function NavBar() {
             ))}
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-2">
-            <span className="text-[2rem] md:text-[2.25rem] font-bold tracking-[-0.03em] text-[var(--color-brand-primary)] group-hover:text-[var(--color-brand-accent)] transition-colors duration-300">
+            <span className="text-[1.5rem] md:text-[1.625rem] font-bold tracking-[-0.02em] text-[var(--color-brand-primary)] group-hover:text-[var(--color-brand-accent)] transition-colors duration-300">
               LEANSPARK
             </span>
           </Link>
@@ -237,10 +237,10 @@ export default function NavBar() {
               href="https://www.amazon.in/LeanSpark-Frugal-Design-Global-Impact/dp/0143480618"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative ml-4 px-6 py-2.5 rounded-full text-[0.9375rem] font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-0.5"
+              className="group relative ml-4 px-5 py-2 rounded-sm text-[0.875rem] font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-0.5"
             >
-              <span className="absolute inset-0 bg-[#BD2220] rounded-full" />
-              <span className="absolute inset-0 bg-[#a01d1b] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 bg-[#BD2220] rounded-sm" />
+              <span className="absolute inset-0 bg-[#a01d1b] rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center gap-2 text-white">
                 Order
                 <FiArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
@@ -250,7 +250,7 @@ export default function NavBar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden flex items-center justify-center w-11 h-11 rounded-full bg-[var(--color-brand-primary)]/5 text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/10 transition-colors duration-300"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-sm border border-[var(--color-brand-primary)]/15 bg-[var(--color-brand-primary)]/5 text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/10 transition-colors duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >

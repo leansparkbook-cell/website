@@ -82,6 +82,59 @@ export default function HeroSection() {
         />
       </div>
 
+      {/* === BRAND DECORATIVE ELEMENTS (subtle, brand colours only) === */}
+
+      {/* Editorial corner frame — thin blue hairlines with gold accent corners */}
+      <div
+        className="pointer-events-none absolute inset-x-6 lg:inset-x-10 top-28 bottom-10 z-[1] hidden lg:block"
+        aria-hidden="true"
+      >
+        <span className="absolute -top-px -left-px h-10 w-10 border-t border-l border-[var(--color-brand-primary)]/25" />
+        <span className="absolute -top-px -right-px h-10 w-10 border-t border-r border-[var(--color-brand-primary)]/25" />
+        <span className="absolute -bottom-px -left-px h-10 w-10 border-b border-l border-[var(--color-brand-primary)]/25" />
+        <span className="absolute -bottom-px -right-px h-10 w-10 border-b border-r border-[var(--color-brand-primary)]/25" />
+        <span className="absolute -top-[3px] -left-[3px] h-1.5 w-1.5 rounded-full bg-[var(--color-brand-gold)]/70" />
+        <span className="absolute -bottom-[3px] -right-[3px] h-1.5 w-1.5 rounded-full bg-[var(--color-brand-gold)]/70" />
+      </div>
+
+      {/* Floating geometric accents — a gold ring and a slow-spinning blue square */}
+      <motion.div
+        aria-hidden="true"
+        animate={{ y: [0, -12, 0], rotate: [0, 8, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute top-[20%] right-[9%] z-[1] hidden lg:block"
+      >
+        <div className="h-16 w-16 rounded-full border border-[var(--color-brand-gold)]/35" />
+      </motion.div>
+      <motion.div
+        aria-hidden="true"
+        animate={{ y: [0, 10, 0], rotate: [45, 57, 45] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="pointer-events-none absolute bottom-[20%] left-[6%] z-[1] hidden lg:block"
+      >
+        <div className="h-5 w-5 border border-[var(--color-brand-primary)]/30" />
+      </motion.div>
+
+      {/* Scroll cue — minimal label with a travelling accent line */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1 }}
+        className="pointer-events-none absolute bottom-8 left-1/2 z-[2] hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
+        aria-hidden="true"
+      >
+        <span className="text-[0.625rem] font-semibold uppercase tracking-[0.3em] text-[var(--color-brand-primary)]/50">
+          Scroll
+        </span>
+        <span className="relative h-10 w-px overflow-hidden bg-[var(--color-brand-primary)]/15">
+          <motion.span
+            animate={{ y: ["-100%", "200%"] }}
+            transition={{ duration: 1.9, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-transparent to-[var(--color-brand-accent)]"
+          />
+        </span>
+      </motion.div>
+
       {/* === CONTENT CONTAINER (constrained width) === */}
       <section className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 lg:gap-24 px-6 lg:px-12 pt-32 pb-24 max-w-[1280px] mx-auto">
 
